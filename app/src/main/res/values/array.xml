@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="csinum">
+        <item>CSI0</item>
+        <item>CSI1</item>
+        <item>CSI0+CSI1</item>
+    </string-array>
+    <string-array name="csimerge_num">
+        <item>NONE</item>
+        <item>CSI1</item>
+        <item>CSI0</item>
+        <item>CSI0+CSI1</item>
+    </string-array>
+    <string-array name="pre_size">
+        <item>720P</item>
+        <item>1080P</item>
+        <item>CVBS</item>
+    </string-array>
+    <string-array name="size">
+        <item>720P</item>
+        <item>1080P</item>
+        <item>CVBS_PAL</item>
+        <item>CVBS_NTSC</item>
+    </string-array>
+    <string-array name="child_size">
+        <item>480P</item>
+        <item>CIF</item>
+        <item>720P</item>
+    </string-array>
+    <string-array name="streamkps">
+        <item>4M</item>
+        <item>2M</item>
+        <item>1M</item>
+    </string-array>
+    <string-array name="child_streamkps">
+        <item>2M</item>
+        <item>1M</item>
+        <item>512K</item>
+    </string-array>
+    <string-array name="num">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+    <string-array name="segmentSize">
+        <item>50M</item>
+        <item>100M</item>
+        <item>200M</item>
+        <item>1min</item>
+        <item>3min</item>
+        <item>5min</item>
+    </string-array>
+
+    <string-array name="codecType">
+        <item>H264</item>
+        <item>H265</item>
+    </string-array>
+
+    <string-array name="containerType">
+        <item>MP4</item>
+        <item>TS</item>
+    </string-array>
+
+    <string-array name="language">
+        <item>English</item>
+        <item>中文</item>
+    </string-array>
+
+    <string-array name="show_type">
+        <item>4 channel</item>
+        <item>6 channel</item>
+    </string-array>
+
+    <string-array name="camera_type">
+        <item>PAL</item>
+        <item>NTSC</item>
+    </string-array>
+
+    <string-array name="speed_mode">
+        <item>gps</item>
+        <item>simulation</item>
+    </string-array>
+</resources>
