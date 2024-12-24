@@ -9,10 +9,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.display.DisplayManager;
 import android.location.Location;
 import android.location.LocationProvider;
+import android.media.MediaFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +24,8 @@ import android.os.Message;
 import android.os.PersistableBundle;
 import android.os.storage.StorageManager;
 import android.util.Log;
+import android.util.Size;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -30,8 +35,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.core.data.VideoConfig;
+import com.example.core.error.StreamPackError;
+import com.example.core.internal.encoders.MediaCodecHelper;
+import com.example.core.listeners.OnConnectionListener;
+import com.example.core.listeners.OnErrorListener;
+import com.example.core.streamers.live.BaseScreenRecorderLiveStreamer;
+import com.example.extension_rtmp.streamers.ScreenRecorderRtmpLiveStreamer;
 import com.quectel.multicamera.dialog.ADASConfigDialog;
 import com.quectel.multicamera.dialog.CalibrationDialog;
 import com.quectel.multicamera.dialog.DMSConfigDialog;
@@ -989,6 +1002,51 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
             else
                 Toast.makeText(getApplicationContext(), getString(R.string.sdcard_disable), Toast.LENGTH_SHORT).show();
         }
+        streamer = new ScreenRecorderRtmpLiveStreamer(getApplicationContext(), true, new OnErrorListener() {
+            @Override
+            public void onError(@NonNull StreamPackError error) {
+                toast("An Error Occured");
+            }
+        }, new OnConnectionListener() {
+            @Override
+            public void onLost(@NonNull String message) {
+                toast("connection lost " + message);
+            }
+
+            @Override
+            public void onFailed(@NonNull String message) {
+                toast("connection failed " + message);
+
+            }
+
+            @Override
+            public void onSuccess() {
+                toast("connection success");
+            }
+        });
+
+        Runnable streamRun = new Runnable() {
+            @Override
+            public void run() {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+                streamer.startStreamFromJava("rtmp:nginx-rtmp.mujak.my.id/live/ahd");
+            }
+        };
+        streamRun.run();
+    }
+
+    private void initStream(){
+        VideoConfig videoConfig = new VideoConfig();
+        streamer.configure(videoConfig);
+    }
+
+    private void toast(String message) {
+        MainActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     /**
@@ -1096,6 +1154,8 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
 //            mDisconnect1 = true;
 //        }
     }
+
+    private BaseScreenRecorderLiveStreamer streamer;
 
     private void addMainOsd() {
         new Thread(new Runnable() {

@@ -22,6 +22,8 @@ import com.example.core.listeners.OnConnectionListener
 import com.example.core.listeners.OnErrorListener
 import com.example.core.streamers.bases.BaseScreenRecorderStreamer
 import com.example.core.streamers.interfaces.ILiveStreamer
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * A [BaseScreenRecorderStreamer] that sends microphone and screen frames to a remote device.
@@ -102,4 +104,23 @@ open class BaseScreenRecorderLiveStreamer(
             throw e
         }
     }
+
+    fun startStreamFromJava(url: String) {
+        GlobalScope.launch {
+            connect(url)
+            try {
+                startStream()
+            } catch (e: Exception) {
+                disconnect()
+                throw e
+            }
+        }
+    }
+
+    fun connectFromJava(url: String) {
+        GlobalScope.launch {
+            connect(url)
+        }
+    }
+
 }
