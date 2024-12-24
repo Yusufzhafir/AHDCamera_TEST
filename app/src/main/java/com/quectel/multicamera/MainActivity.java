@@ -1032,7 +1032,7 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
         streamer.configure(videoConfig);
         Runnable streamRun = () -> {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
-            streamer.startStreamFromJava("rtmp:nginx-rtmp.mujak.my.id/live/ahd");
+            streamer.startStreamFromJava("rtmp://nginx-rtmp.mujak.my.id/live/ahd");
         };
         streamRun.run();
     }
