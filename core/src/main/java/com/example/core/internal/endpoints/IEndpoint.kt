@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.endpoints
+package com.example.core.internal.endpoints
 
-import io.github.thibaultbee.streampack.internal.data.Packet
-import io.github.thibaultbee.streampack.internal.interfaces.Configurable
-import io.github.thibaultbee.streampack.internal.interfaces.Releaseable
-import io.github.thibaultbee.streampack.internal.interfaces.SuspendStreamable
+import com.example.core.internal.data.Packet
+import com.example.core.internal.interfaces.Configurable
+import com.example.core.internal.interfaces.Releaseable
+import com.example.core.internal.interfaces.SuspendStreamable
 
 interface IEndpoint : SuspendStreamable, Configurable<Int>, Releaseable {
 

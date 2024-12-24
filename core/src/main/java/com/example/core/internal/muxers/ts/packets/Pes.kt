@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.ts.packets
+package com.example.core.internal.muxers.ts.packets
 
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.muxers.IMuxerListener
-import io.github.thibaultbee.streampack.internal.muxers.ts.data.Stream
-import io.github.thibaultbee.streampack.internal.muxers.ts.descriptors.AdaptationField
-import io.github.thibaultbee.streampack.internal.muxers.ts.packets.Pes.StreamId.Companion.fromMimeType
-import io.github.thibaultbee.streampack.internal.utils.TimeUtils
-import io.github.thibaultbee.streampack.internal.utils.extensions.isAudio
-import io.github.thibaultbee.streampack.internal.utils.extensions.isVideo
+import com.example.core.internal.data.Frame
+import com.example.core.internal.muxers.IMuxerListener
+import com.example.core.internal.muxers.ts.data.Stream
+import com.example.core.internal.muxers.ts.descriptors.AdaptationField
+import com.example.core.internal.muxers.ts.packets.Pes.StreamId.Companion.fromMimeType
+import com.example.core.internal.utils.TimeUtils
+import com.example.core.internal.utils.extensions.isAudio
+import com.example.core.internal.utils.extensions.isVideo
 
 class Pes(
     muxerListener: IMuxerListener? = null,

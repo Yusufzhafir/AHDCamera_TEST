@@ -1,6 +1,6 @@
-package io.github.thibaultbee.streampack.internal.muxers.mp4.models
+package com.example.core.internal.muxers.mp4.models
 
-import io.github.thibaultbee.streampack.internal.data.Frame
+import com.example.core.internal.data.Frame
 
 /**
  * A class that is responsible to decide when to write a segment.

@@ -1,4 +1,4 @@
-package io.github.thibaultbee.streampack.internal.muxers.mp4.models
+package com.example.core.internal.muxers.mp4.models
 
 abstract class MP4SegmenterFactory {
     abstract fun build(hasAudio: Boolean, hasVideo: Boolean): MP4Segmenter

@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.video.hevc
+package com.example.core.internal.utils.av.video.hevc
 
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.BitBuffer
-import io.github.thibaultbee.streampack.internal.utils.av.video.ChromaFormat
-import io.github.thibaultbee.streampack.internal.utils.av.video.H26XBitBuffer
-import io.github.thibaultbee.streampack.internal.utils.extensions.extractRbsp
+import com.example.core.internal.utils.av.buffer.BitBuffer
+import com.example.core.internal.utils.av.video.ChromaFormat
+import com.example.core.internal.utils.av.video.H26XBitBuffer
+import com.example.core.internal.utils.extensions.extractRbsp
 import java.nio.ByteBuffer
 
 data class SequenceParameterSets(

@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".RecordService">
+        <service android:name=".RecordService" android:exported="true">
             <intent-filter>
                 <action
                     android:name=".RecordService" />

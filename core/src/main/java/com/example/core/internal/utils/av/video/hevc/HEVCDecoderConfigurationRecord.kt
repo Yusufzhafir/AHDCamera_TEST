@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.video.hevc
+package com.example.core.internal.utils.av.video.hevc
 
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.ByteBufferWriter
-import io.github.thibaultbee.streampack.internal.utils.av.video.ChromaFormat
-import io.github.thibaultbee.streampack.internal.utils.extensions.put
-import io.github.thibaultbee.streampack.internal.utils.extensions.putLong48
-import io.github.thibaultbee.streampack.internal.utils.extensions.putShort
-import io.github.thibaultbee.streampack.internal.utils.extensions.removeStartCode
-import io.github.thibaultbee.streampack.internal.utils.extensions.shl
-import io.github.thibaultbee.streampack.internal.utils.extensions.shr
-import io.github.thibaultbee.streampack.internal.utils.extensions.startCodeSize
+import com.example.core.internal.utils.av.buffer.ByteBufferWriter
+import com.example.core.internal.utils.av.video.ChromaFormat
+import com.example.core.internal.utils.extensions.put
+import com.example.core.internal.utils.extensions.putLong48
+import com.example.core.internal.utils.extensions.putShort
+import com.example.core.internal.utils.extensions.removeStartCode
+import com.example.core.internal.utils.extensions.shl
+import com.example.core.internal.utils.extensions.shr
+import com.example.core.internal.utils.extensions.startCodeSize
 import java.nio.ByteBuffer
 import kotlin.experimental.and
 
@@ -216,7 +216,7 @@ data class HEVCDecoderConfigurationRecord(
             SUFFIX_SEI(40);
 
             companion object {
-                fun fromValue(value: Byte) = entries.first { it.value == value }
+                fun fromValue(value: Byte) = values().first { it.value == value }
 
             }
         }

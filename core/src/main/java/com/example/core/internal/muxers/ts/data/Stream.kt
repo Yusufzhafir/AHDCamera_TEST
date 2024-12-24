@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.ts.data
+package com.example.core.internal.muxers.ts.data
 
-import io.github.thibaultbee.streampack.data.Config
-import io.github.thibaultbee.streampack.internal.utils.extensions.isAudio
-import io.github.thibaultbee.streampack.internal.utils.extensions.isVideo
+import com.example.core.data.Config
+import com.example.core.internal.utils.extensions.isAudio
+import com.example.core.internal.utils.extensions.isVideo
 
 data class Stream(
     val config: Config,

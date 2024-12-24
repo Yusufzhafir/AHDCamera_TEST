@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.encoders
+package com.example.core.internal.encoders
 
 import android.media.MediaCodecInfo
 import android.media.MediaCodecList
 import android.media.MediaFormat
 import android.os.Build
 import android.util.Range
-import io.github.thibaultbee.streampack.internal.utils.extensions.isAudio
-import io.github.thibaultbee.streampack.internal.utils.extensions.isVideo
+import com.example.core.internal.utils.extensions.isAudio
+import com.example.core.internal.utils.extensions.isVideo
 import java.security.InvalidParameterException
 
 object MediaCodecHelper {

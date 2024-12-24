@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.flv
+package com.example.core.internal.muxers.flv
 
-import io.github.thibaultbee.streampack.data.Config
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.data.Packet
-import io.github.thibaultbee.streampack.internal.data.PacketType
-import io.github.thibaultbee.streampack.internal.muxers.IMuxer
-import io.github.thibaultbee.streampack.internal.muxers.IMuxerListener
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.AVTagsFactory
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.FlvHeader
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.OnMetadata
-import io.github.thibaultbee.streampack.internal.orientation.ISourceOrientationProvider
-import io.github.thibaultbee.streampack.internal.utils.extensions.isAudio
-import io.github.thibaultbee.streampack.internal.utils.extensions.isVideo
+import com.example.core.data.Config
+import com.example.core.internal.data.Frame
+import com.example.core.internal.data.Packet
+import com.example.core.internal.data.PacketType
+import com.example.core.internal.muxers.IMuxer
+import com.example.core.internal.muxers.IMuxerListener
+import com.example.core.internal.muxers.flv.tags.AVTagsFactory
+import com.example.core.internal.muxers.flv.tags.FlvHeader
+import com.example.core.internal.muxers.flv.tags.OnMetadata
+import com.example.core.internal.orientation.ISourceOrientationProvider
+import com.example.core.internal.utils.extensions.isAudio
+import com.example.core.internal.utils.extensions.isVideo
 
 class FlvMuxer(
     override var listener: IMuxerListener? = null,

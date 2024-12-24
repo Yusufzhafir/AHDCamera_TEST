@@ -13,21 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.streamers.helpers
+package com.example.core.streamers.helpers
 
 import android.content.Context
 import android.util.Range
 import android.util.Size
-import io.github.thibaultbee.streampack.internal.muxers.IMuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.IVideoMuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.flv.FlvMuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.mp4.MP4MuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.ts.TSMuxerHelper
-import io.github.thibaultbee.streampack.internal.utils.av.video.DynamicRangeProfile
-import io.github.thibaultbee.streampack.streamers.bases.BaseCameraStreamer
-import io.github.thibaultbee.streampack.utils.get10BitSupportedProfiles
-import io.github.thibaultbee.streampack.utils.getCameraFpsList
-import io.github.thibaultbee.streampack.utils.getCameraOutputStreamSizes
+import com.example.core.internal.muxers.IMuxerHelper
+import com.example.core.internal.muxers.IVideoMuxerHelper
+import com.example.core.internal.muxers.flv.FlvMuxerHelper
+import com.example.core.internal.muxers.mp4.MP4MuxerHelper
+import com.example.core.internal.muxers.ts.TSMuxerHelper
+import com.example.core.internal.utils.av.video.DynamicRangeProfile
+import com.example.core.streamers.bases.BaseCameraStreamer
+import com.example.core.utils.get10BitSupportedProfiles
+import com.example.core.utils.getCameraFpsList
+import com.example.core.utils.getCameraOutputStreamSizes
 
 /**
  * Configuration helper for [BaseCameraStreamer].

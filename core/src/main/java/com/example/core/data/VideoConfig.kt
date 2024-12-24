@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.data
+package com.example.core.data
 
 import android.content.Context
 import android.media.MediaCodecInfo
@@ -31,13 +31,13 @@ import android.media.MediaFormat
 import android.media.MediaFormat.KEY_PRIORITY
 import android.os.Build
 import android.util.Size
-import io.github.thibaultbee.streampack.internal.encoders.MediaCodecHelper
-import io.github.thibaultbee.streampack.internal.utils.av.video.DynamicRangeProfile
-import io.github.thibaultbee.streampack.internal.utils.extensions.isDevicePortrait
-import io.github.thibaultbee.streampack.internal.utils.extensions.isVideo
-import io.github.thibaultbee.streampack.internal.utils.extensions.landscapize
-import io.github.thibaultbee.streampack.internal.utils.extensions.portraitize
-import io.github.thibaultbee.streampack.streamers.bases.BaseStreamer
+import com.example.core.internal.encoders.MediaCodecHelper
+import com.example.core.internal.utils.av.video.DynamicRangeProfile
+import com.example.core.internal.utils.extensions.isDevicePortrait
+import com.example.core.internal.utils.extensions.isVideo
+import com.example.core.internal.utils.extensions.landscapize
+import com.example.core.internal.utils.extensions.portraitize
+import com.example.core.streamers.bases.BaseStreamer
 import java.security.InvalidParameterException
 import kotlin.math.roundToInt
 

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.events
+package com.example.core.internal.events
 
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import io.github.thibaultbee.streampack.error.StreamPackError
-import io.github.thibaultbee.streampack.listeners.OnErrorListener
+import com.example.core.error.StreamPackError
+import com.example.core.listeners.OnErrorListener
 
 abstract class EventHandler {
     private val eventHandler by lazy {

@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.views
+package com.example.core.views
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.PointF
@@ -37,12 +38,14 @@ import androidx.camera.viewfinder.surface.populateFromCharacteristics
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import io.github.thibaultbee.streampack.R
-import io.github.thibaultbee.streampack.logger.Logger
-import io.github.thibaultbee.streampack.streamers.interfaces.ICameraStreamer
-import io.github.thibaultbee.streampack.utils.OrientationUtils
-import io.github.thibaultbee.streampack.utils.getCameraCharacteristics
+import com.example.core.R
+import com.example.core.logger.Logger
+import com.example.core.streamers.interfaces.ICameraStreamer
+import com.example.core.utils.OrientationUtils
+import com.example.core.utils.getCameraCharacteristics
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.concurrent.CancellationException
 
@@ -63,10 +66,10 @@ class PreviewView @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyle) {
     private val cameraViewFinder = CameraViewfinder(context, attrs, defStyle)
 
-    private var viewFinderSurfaceRequest: ViewfinderSurfaceRequest? = null
+    private var viewFinderSurfaceRequest: ViewfinderSurfaceRequest? =
+        null
 
-    private val lifecycleScope: CoroutineScope?
-        get() = findViewTreeLifecycleOwner()?.lifecycleScope
+    var surface: Surface? = null
 
     /**
      * Enables zoom on pinch gesture.
@@ -265,9 +268,9 @@ class PreviewView @JvmOverloads constructor(
                 throw SecurityException("Camera permission is needed to run this application")
             }
 
-            lifecycleScope?.launch {
+            GlobalScope.launch(Dispatchers.IO) {
                 startPreviewInternal(streamer, streamer.camera, targetViewSize)
-            } ?: throw IllegalStateException("LifecycleScope is not available")
+            }
         } catch (e: Exception) {
             if (shouldFailSilently) {
                 Logger.w(TAG, e.toString(), e)
@@ -277,6 +280,7 @@ class PreviewView @JvmOverloads constructor(
         }
     }
 
+    @SuppressLint("MissingPermission")
     private suspend fun startPreviewInternal(
         streamer: ICameraStreamer,
         camera: String,
@@ -290,7 +294,7 @@ class PreviewView @JvmOverloads constructor(
         viewFinderSurfaceRequest = request
 
         try {
-            val surface = sendRequest(request)
+            surface = sendRequest(request)
             if (ActivityCompat.checkSelfPermission(
                     context,
                     Manifest.permission.CAMERA
@@ -304,8 +308,8 @@ class PreviewView @JvmOverloads constructor(
                 )
                 listener?.onPreviewFailed(SecurityException("Camera permission is needed to run this application"))
             } else {
-                if (surface.isValid) {
-                    streamer.startPreview(surface, camera)
+                if (surface!!.isValid) {
+                    streamer.startPreview(surface!!, camera)
                     listener?.onPreviewStarted()
                 } else {
                     Logger.w(TAG, "Invalid surface")
@@ -458,7 +462,7 @@ class PreviewView @JvmOverloads constructor(
             /**
              * Returns the [Position] from the given id.
              */
-            internal fun entryOf(value: Int) = entries.first { it.value == value }
+            internal fun entryOf(value: Int) = values().first { it.value == value }
         }
     }
 
@@ -489,7 +493,7 @@ class PreviewView @JvmOverloads constructor(
             /**
              * Returns the [ScaleMode] from the given id.
              */
-            internal fun entryOf(value: Int) = entries.first { it.value == value }
+            internal fun entryOf(value: Int) = values().first { it.value == value }
         }
     }
 

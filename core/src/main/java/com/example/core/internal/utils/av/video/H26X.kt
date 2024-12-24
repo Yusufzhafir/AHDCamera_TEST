@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.video
+package com.example.core.internal.utils.av.video
 
 enum class ChromaFormat(val value: Byte) {
     YUV400(0),
@@ -23,6 +23,6 @@ enum class ChromaFormat(val value: Byte) {
 
     companion object {
         fun fromChromaIdc(chromaIdc: Byte) =
-            entries.first { it.value == chromaIdc }
+            values().first { it.value == chromaIdc }
     }
 }

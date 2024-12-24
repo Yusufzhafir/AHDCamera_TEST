@@ -1,6 +1,10 @@
 plugins {
     id 'com.android.library'
+    id 'kotlin-android'
+    id 'org.jetbrains.dokka'
 }
+
+apply from: "${rootDir}/common_library.gradle"
 
 android {
     namespace 'com.example.core'
@@ -8,6 +12,7 @@ android {
 
     defaultConfig {
         minSdk 24
+        targetSdk 34
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -20,14 +25,28 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 }
 
-dependencies {
+ext {
+    artifactName = 'streampack'
+    artifactDescription = 'Main library of StreamPack.'
+}
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.24"
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation "androidx.core:core-ktx:1.6.0"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.camera:camera-viewfinder:1.4.0-alpha06'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

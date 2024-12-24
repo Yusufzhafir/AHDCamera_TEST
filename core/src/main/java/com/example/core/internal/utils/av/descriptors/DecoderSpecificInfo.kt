@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.descriptors
+package com.example.core.internal.utils.av.descriptors
 
 import java.nio.ByteBuffer
 

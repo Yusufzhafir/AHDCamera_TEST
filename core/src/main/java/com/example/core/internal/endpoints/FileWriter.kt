@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.endpoints
+package com.example.core.internal.endpoints
 
-import io.github.thibaultbee.streampack.internal.data.Packet
-import io.github.thibaultbee.streampack.internal.utils.extensions.toByteArray
+import com.example.core.internal.data.Packet
+import com.example.core.internal.utils.extensions.toByteArray
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream

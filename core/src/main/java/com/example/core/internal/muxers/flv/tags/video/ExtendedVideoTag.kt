@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.flv.tags.video
+package com.example.core.internal.muxers.flv.tags.video
 
 import android.media.MediaFormat
 import android.os.Build
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.FlvTag
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.TagType
-import io.github.thibaultbee.streampack.internal.utils.av.FourCCs
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.ByteBufferWriter
-import io.github.thibaultbee.streampack.internal.utils.extensions.put
-import io.github.thibaultbee.streampack.internal.utils.extensions.putInt24
+import com.example.core.internal.muxers.flv.tags.FlvTag
+import com.example.core.internal.muxers.flv.tags.TagType
+import com.example.core.internal.utils.av.FourCCs
+import com.example.core.internal.utils.av.buffer.ByteBufferWriter
+import com.example.core.internal.utils.extensions.put
+import com.example.core.internal.utils.extensions.putInt24
 import java.nio.ByteBuffer
 
 class ExtendedVideoTag(

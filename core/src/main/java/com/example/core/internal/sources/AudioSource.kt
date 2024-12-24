@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.sources
+package com.example.core.internal.sources
 
 import android.Manifest
 import android.media.AudioRecord
@@ -24,10 +24,10 @@ import android.media.audiofx.AcousticEchoCanceler
 import android.media.audiofx.NoiseSuppressor
 import android.os.Build
 import androidx.annotation.RequiresPermission
-import io.github.thibaultbee.streampack.data.AudioConfig
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.utils.TimeUtils
-import io.github.thibaultbee.streampack.logger.Logger
+import com.example.core.data.AudioConfig
+import com.example.core.internal.data.Frame
+import com.example.core.internal.utils.TimeUtils
+import com.example.core.logger.Logger
 import java.nio.ByteBuffer
 
 class AudioSource : IAudioSource {

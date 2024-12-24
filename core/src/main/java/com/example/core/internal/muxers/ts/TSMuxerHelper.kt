@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.ts
+package com.example.core.internal.muxers.ts
 
 import android.media.MediaFormat
-import io.github.thibaultbee.streampack.internal.muxers.IAudioMuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.IMuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.IVideoMuxerHelper
+import com.example.core.internal.muxers.IAudioMuxerHelper
+import com.example.core.internal.muxers.IMuxerHelper
+import com.example.core.internal.muxers.IVideoMuxerHelper
 
 class TSMuxerHelper : IMuxerHelper {
     override val audio = AudioTSMuxerHelper()

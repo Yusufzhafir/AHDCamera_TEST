@@ -1,4 +1,4 @@
-package io.github.thibaultbee.streampack.internal.utils.av.video.vpx
+package com.example.core.internal.utils.av.video.vpx
 
 import android.media.MediaCodecInfo.CodecProfileLevel.VP9Level1
 import android.media.MediaCodecInfo.CodecProfileLevel.VP9Level11
@@ -33,7 +33,7 @@ enum class Level(val value: Int) {
     LEVEL_62(62);
 
     companion object {
-        fun fromValue(value: Int) = entries.first { it.value == value }
+        fun fromValue(value: Int) = values().first { it.value == value }
 
         fun fromMediaFormat(format: Int): Level {
             return when (format) {

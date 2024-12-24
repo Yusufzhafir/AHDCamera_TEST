@@ -1,4 +1,4 @@
-package io.github.thibaultbee.streampack.internal.orientation
+package com.example.core.internal.orientation
 
 abstract class AbstractSourceOrientationProvider : ISourceOrientationProvider {
     protected val listeners = mutableSetOf<ISourceOrientationListener>()

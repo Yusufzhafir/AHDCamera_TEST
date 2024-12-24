@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.streamers.services
+package com.example.core.streamers.services
 
 import android.Manifest
 import android.app.Notification
@@ -29,16 +29,16 @@ import android.os.IBinder
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.app.ActivityCompat
-import io.github.thibaultbee.streampack.R
-import io.github.thibaultbee.streampack.error.StreamPackError
-import io.github.thibaultbee.streampack.internal.utils.extensions.rootCause
-import io.github.thibaultbee.streampack.listeners.OnConnectionListener
-import io.github.thibaultbee.streampack.listeners.OnErrorListener
-import io.github.thibaultbee.streampack.logger.Logger
-import io.github.thibaultbee.streampack.streamers.bases.BaseScreenRecorderStreamer
-import io.github.thibaultbee.streampack.streamers.interfaces.ILiveStreamer
-import io.github.thibaultbee.streampack.utils.NotificationUtils
-import io.github.thibaultbee.streampack.utils.getStreamer
+import com.example.core.R
+import com.example.core.error.StreamPackError
+import com.example.core.internal.utils.extensions.rootCause
+import com.example.core.listeners.OnConnectionListener
+import com.example.core.listeners.OnErrorListener
+import com.example.core.logger.Logger
+import com.example.core.streamers.bases.BaseScreenRecorderStreamer
+import com.example.core.streamers.interfaces.ILiveStreamer
+import com.example.core.utils.NotificationUtils
+import com.example.core.utils.getStreamer
 import kotlinx.coroutines.runBlocking
 
 /**

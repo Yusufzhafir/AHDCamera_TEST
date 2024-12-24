@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.flv.amf.primitives
+package com.example.core.internal.muxers.flv.amf.primitives
 
-import io.github.thibaultbee.streampack.internal.muxers.flv.amf.AmfParameter
-import io.github.thibaultbee.streampack.internal.utils.extensions.putShort
+import com.example.core.internal.muxers.flv.amf.AmfParameter
+import com.example.core.internal.utils.extensions.putShort
 import java.nio.ByteBuffer
 
 class AmfInt24(private val i: Int) : AmfParameter() {

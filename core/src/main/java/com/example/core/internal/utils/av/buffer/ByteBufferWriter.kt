@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.buffer
+package com.example.core.internal.utils.av.buffer
 
-import io.github.thibaultbee.streampack.internal.utils.extensions.isAnnexB
-import io.github.thibaultbee.streampack.internal.utils.extensions.isAvcc
-import io.github.thibaultbee.streampack.internal.utils.extensions.removeStartCode
-import io.github.thibaultbee.streampack.internal.utils.extensions.startCodeSize
+import com.example.core.internal.utils.extensions.isAnnexB
+import com.example.core.internal.utils.extensions.isAvcc
+import com.example.core.internal.utils.extensions.removeStartCode
+import com.example.core.internal.utils.extensions.startCodeSize
 import java.nio.ByteBuffer
 
 abstract class ByteBufferWriter {

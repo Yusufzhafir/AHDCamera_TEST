@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.audio.aac
+package com.example.core.internal.utils.av.audio.aac
 
-import io.github.thibaultbee.streampack.data.AudioConfig
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.ByteBufferWriter
-import io.github.thibaultbee.streampack.internal.utils.extensions.put
+import com.example.core.data.AudioConfig
+import com.example.core.internal.utils.av.buffer.ByteBufferWriter
+import com.example.core.internal.utils.extensions.put
 import java.nio.ByteBuffer
 
 // Prefix data frame with ADTS

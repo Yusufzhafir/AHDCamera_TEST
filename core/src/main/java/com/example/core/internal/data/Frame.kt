@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.data
+package com.example.core.internal.data
 
 import android.media.MediaFormat
-import io.github.thibaultbee.streampack.internal.utils.extensions.extra
-import io.github.thibaultbee.streampack.internal.utils.extensions.isAudio
-import io.github.thibaultbee.streampack.internal.utils.extensions.isVideo
-import io.github.thibaultbee.streampack.internal.utils.extensions.removePrefixes
+import com.example.core.internal.utils.extensions.extra
+import com.example.core.internal.utils.extensions.isAudio
+import com.example.core.internal.utils.extensions.isVideo
+import com.example.core.internal.utils.extensions.removePrefixes
 import java.nio.ByteBuffer
 
 /**

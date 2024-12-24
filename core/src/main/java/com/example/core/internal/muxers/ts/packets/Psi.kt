@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.ts.packets
+package com.example.core.internal.muxers.ts.packets
 
-import io.github.thibaultbee.streampack.internal.muxers.IMuxerListener
-import io.github.thibaultbee.streampack.internal.muxers.ts.utils.CRC32
-import io.github.thibaultbee.streampack.internal.utils.extensions.put
+import com.example.core.internal.muxers.IMuxerListener
+import com.example.core.internal.muxers.ts.utils.CRC32
+import com.example.core.internal.utils.extensions.put
 import java.nio.ByteBuffer
 
 open class Psi(

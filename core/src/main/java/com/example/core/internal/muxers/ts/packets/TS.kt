@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.ts.packets
+package com.example.core.internal.muxers.ts.packets
 
-import io.github.thibaultbee.streampack.internal.data.SrtPacket
-import io.github.thibaultbee.streampack.internal.muxers.IMuxerListener
-import io.github.thibaultbee.streampack.internal.muxers.ts.utils.MuxerConst
-import io.github.thibaultbee.streampack.internal.muxers.ts.utils.TSOutputCallback
-import io.github.thibaultbee.streampack.internal.utils.extensions.toInt
+import com.example.core.internal.data.SrtPacket
+import com.example.core.internal.muxers.IMuxerListener
+import com.example.core.internal.muxers.ts.utils.MuxerConst
+import com.example.core.internal.muxers.ts.utils.TSOutputCallback
+import com.example.core.internal.utils.extensions.toInt
 import java.nio.ByteBuffer
 import java.security.InvalidParameterException
 

@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.audio
+package com.example.core.internal.utils.av.audio
 
 import android.media.MediaFormat
-import io.github.thibaultbee.streampack.data.AudioConfig
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.BitBuffer
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.BitBufferWriter
-import io.github.thibaultbee.streampack.internal.utils.av.audio.aac.config.ELDSpecificConfig
-import io.github.thibaultbee.streampack.internal.utils.av.audio.aac.config.GASpecificConfig
-import io.github.thibaultbee.streampack.internal.utils.av.audio.aac.config.SpecificConfig
-import io.github.thibaultbee.streampack.internal.utils.extensions.put
+import com.example.core.data.AudioConfig
+import com.example.core.internal.utils.av.buffer.BitBuffer
+import com.example.core.internal.utils.av.buffer.BitBufferWriter
+import com.example.core.internal.utils.av.audio.aac.config.ELDSpecificConfig
+import com.example.core.internal.utils.av.audio.aac.config.GASpecificConfig
+import com.example.core.internal.utils.av.audio.aac.config.SpecificConfig
+import com.example.core.internal.utils.extensions.put
 import java.nio.ByteBuffer
 
 data class AudioSpecificConfig(

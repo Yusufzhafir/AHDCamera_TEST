@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.streamers.interfaces
+package com.example.core.streamers.interfaces
 
 import android.Manifest
 import android.view.Surface
@@ -21,8 +21,8 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.view.TextureView
 import androidx.annotation.RequiresPermission
-import io.github.thibaultbee.streampack.streamers.bases.BaseStreamer
-import io.github.thibaultbee.streampack.streamers.interfaces.settings.IBaseCameraStreamerSettings
+import com.example.core.streamers.bases.BaseStreamer
+import com.example.core.streamers.interfaces.settings.IBaseCameraStreamerSettings
 
 interface ICameraStreamer {
     /**

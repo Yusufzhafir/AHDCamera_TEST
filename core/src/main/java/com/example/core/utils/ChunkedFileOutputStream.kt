@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.utils
+package com.example.core.utils
 
-import io.github.thibaultbee.streampack.streamers.interfaces.IFileStreamer
+import com.example.core.streamers.interfaces.IFileStreamer
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream

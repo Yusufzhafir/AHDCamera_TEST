@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.streamers
+package com.example.core.streamers
 
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import io.github.thibaultbee.streampack.streamers.interfaces.IStreamer
-import io.github.thibaultbee.streampack.utils.getCameraStreamer
-import io.github.thibaultbee.streampack.utils.getLiveStreamer
+import com.example.core.streamers.interfaces.IStreamer
+import com.example.core.utils.getCameraStreamer
+import com.example.core.utils.getLiveStreamer
 import kotlinx.coroutines.runBlocking
 
 /**

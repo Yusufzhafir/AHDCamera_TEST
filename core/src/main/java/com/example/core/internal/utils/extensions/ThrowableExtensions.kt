@@ -1,4 +1,4 @@
-package io.github.thibaultbee.streampack.internal.utils.extensions
+package com.example.core.internal.utils.extensions
 
 /**
  * Get root cause. This code is from guava Throwables API.

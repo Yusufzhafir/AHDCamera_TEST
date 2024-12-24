@@ -13,6 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.mp4.boxes
+package com.example.core.internal.muxers.mp4.boxes
 
 class NullMediaHeaderBox : FullBox("nmhd", 0, 0)

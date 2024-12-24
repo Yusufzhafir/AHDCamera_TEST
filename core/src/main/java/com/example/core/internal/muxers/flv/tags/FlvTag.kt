@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.flv.tags
+package com.example.core.internal.muxers.flv.tags
 
-import io.github.thibaultbee.streampack.internal.utils.extensions.put
-import io.github.thibaultbee.streampack.internal.utils.extensions.putInt24
-import io.github.thibaultbee.streampack.internal.utils.extensions.shl
+import com.example.core.internal.utils.extensions.put
+import com.example.core.internal.utils.extensions.putInt24
+import com.example.core.internal.utils.extensions.shl
 import java.nio.ByteBuffer
 
 abstract class FlvTag(

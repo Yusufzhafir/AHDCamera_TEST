@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.flv.amf
+package com.example.core.internal.muxers.flv.amf
 
-import io.github.thibaultbee.streampack.internal.muxers.flv.amf.primitives.*
+import com.example.core.internal.muxers.flv.amf.primitives.*
 import java.io.IOException
 import java.nio.ByteBuffer
 

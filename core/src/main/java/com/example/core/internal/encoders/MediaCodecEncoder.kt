@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.encoders
+package com.example.core.internal.encoders
 
 import android.media.MediaCodec
 import android.media.MediaFormat
 import android.os.Build
 import android.os.Handler
 import android.os.HandlerThread
-import io.github.thibaultbee.streampack.data.Config
-import io.github.thibaultbee.streampack.error.StreamPackError
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.events.EventHandler
-import io.github.thibaultbee.streampack.logger.Logger
+import com.example.core.data.Config
+import com.example.core.error.StreamPackError
+import com.example.core.internal.data.Frame
+import com.example.core.internal.events.EventHandler
+import com.example.core.logger.Logger
 
 abstract class MediaCodecEncoder<T : Config>(
     override val encoderListener: IEncoderListener,

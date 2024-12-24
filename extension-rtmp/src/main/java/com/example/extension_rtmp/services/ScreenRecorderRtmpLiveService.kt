@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.ext.rtmp.services
+package com.example.extension_rtmp.services
 
 import android.content.ComponentName
 import android.content.Context
 import android.os.Bundle
-import io.github.thibaultbee.streampack.R
-import io.github.thibaultbee.streampack.ext.rtmp.streamers.ScreenRecorderRtmpLiveStreamer
-import io.github.thibaultbee.streampack.streamers.bases.BaseScreenRecorderStreamer
-import io.github.thibaultbee.streampack.streamers.services.BaseScreenRecorderService
+import com.example.core.R
+import com.example.core.streamers.bases.BaseScreenRecorderStreamer
+import com.example.core.streamers.services.BaseScreenRecorderService
+import com.example.extension_rtmp.streamers.ScreenRecorderRtmpLiveStreamer
 
 open class ScreenRecorderRtmpLiveService(
     notificationId: Int = DEFAULT_NOTIFICATION_ID,

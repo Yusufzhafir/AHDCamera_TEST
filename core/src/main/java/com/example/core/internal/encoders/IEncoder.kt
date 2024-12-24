@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.encoders
+package com.example.core.internal.encoders
 
-import io.github.thibaultbee.streampack.internal.interfaces.Configurable
-import io.github.thibaultbee.streampack.internal.interfaces.Releaseable
-import io.github.thibaultbee.streampack.internal.interfaces.Streamable
+import com.example.core.internal.interfaces.Configurable
+import com.example.core.internal.interfaces.Releaseable
+import com.example.core.internal.interfaces.Streamable
 
 interface IEncoder<T> : Streamable, Configurable<T>, Releaseable {
     /**

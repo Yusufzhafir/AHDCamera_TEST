@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.extension_rtmp.endpoints
+package com.example.extension_rtmp.internal.endpoints
 
-import com.example.core.ext.rtmp.data.RtmpConnectionDescriptor
 import com.example.core.internal.data.Packet
 import com.example.core.internal.endpoints.ILiveEndpoint
 import com.example.core.listeners.OnConnectionListener
 import com.example.core.logger.Logger
+import com.example.extension_rtmp.data.RtmpConnectionDescriptor
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

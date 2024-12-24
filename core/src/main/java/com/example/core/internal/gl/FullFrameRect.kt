@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.gl
+package com.example.core.internal.gl
 
 import android.opengl.GLES20
 import android.opengl.Matrix

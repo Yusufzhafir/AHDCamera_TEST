@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.descriptors
+package com.example.core.internal.utils.av.descriptors
 
 enum class Tags(val value: Byte) {
     ObjectDescr(0x01),
@@ -50,7 +50,7 @@ enum class Tags(val value: Byte) {
 
     companion object {
         fun from(tag: Byte): Tags {
-            return entries.find { it.value == tag }
+            return values().find { it.value == tag }
                 ?: throw IllegalArgumentException("Unknown tag: $tag")
         }
     }

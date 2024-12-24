@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.video.vpx
+package com.example.core.internal.utils.av.video.vpx
 
 import android.media.MediaFormat
 
@@ -35,8 +35,7 @@ enum class MatrixCoefficients(val value: Int) {
 
 
     companion object {
-        fun fromValue(value: Int) =
-            entries.first { it.value == value }
+        fun fromValue(value: Int) = values().first { it.value == value }
 
         fun fromColorStandard(colorStandard: Int): MatrixCoefficients {
             return when (colorStandard) {

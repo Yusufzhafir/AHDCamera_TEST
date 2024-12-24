@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.sources
+package com.example.core.internal.sources
 
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.interfaces.Configurable
-import io.github.thibaultbee.streampack.internal.interfaces.Releaseable
-import io.github.thibaultbee.streampack.internal.interfaces.Streamable
+import com.example.core.internal.data.Frame
+import com.example.core.internal.interfaces.Configurable
+import com.example.core.internal.interfaces.Releaseable
+import com.example.core.internal.interfaces.Streamable
 import java.nio.ByteBuffer
 
 interface IFrameSource<T> : Streamable, Configurable<T>, Releaseable {

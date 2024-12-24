@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.descriptors
+package com.example.core.internal.utils.av.descriptors
 
-import io.github.thibaultbee.streampack.internal.utils.extensions.put
-import io.github.thibaultbee.streampack.internal.utils.extensions.putInt24
-import io.github.thibaultbee.streampack.internal.utils.extensions.shl
+import com.example.core.internal.utils.extensions.put
+import com.example.core.internal.utils.extensions.putInt24
+import com.example.core.internal.utils.extensions.shl
 import java.nio.ByteBuffer
 
 open class DecoderConfigDescriptor(
@@ -47,7 +47,7 @@ enum class ObjectTypeIndication(val value: Byte) {
     AUDIO_ISO_13818_3_MP3(0x69);
 
     companion object {
-        fun fromValue(value: Byte) = entries.first { it.value == value }
+        fun fromValue(value: Byte) = values().first { it.value == value }
     }
 }
 
@@ -63,6 +63,6 @@ enum class StreamType(val value: Byte) {
     MPEGJStream(9);
 
     companion object {
-        fun fromValue(value: Byte) = entries.first { it.value == value }
+        fun fromValue(value: Byte) = values().first { it.value == value }
     }
 }

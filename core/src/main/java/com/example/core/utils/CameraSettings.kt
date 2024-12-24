@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.utils
+package com.example.core.utils
 
 import android.content.Context
 import android.graphics.PointF
@@ -27,15 +27,15 @@ import android.os.Build
 import android.util.Range
 import android.util.Rational
 import androidx.annotation.RequiresApi
-import io.github.thibaultbee.streampack.internal.sources.camera.CameraController
-import io.github.thibaultbee.streampack.internal.utils.*
-import io.github.thibaultbee.streampack.internal.utils.extensions.clamp
-import io.github.thibaultbee.streampack.internal.utils.extensions.isDevicePortrait
-import io.github.thibaultbee.streampack.internal.utils.extensions.isNormalized
-import io.github.thibaultbee.streampack.internal.utils.extensions.normalize
-import io.github.thibaultbee.streampack.internal.utils.extensions.rotate
-import io.github.thibaultbee.streampack.logger.Logger
-import io.github.thibaultbee.streampack.streamers.bases.BaseCameraStreamer
+import com.example.core.internal.sources.camera.CameraController
+import com.example.core.internal.utils.*
+import com.example.core.internal.utils.extensions.clamp
+import com.example.core.internal.utils.extensions.isDevicePortrait
+import com.example.core.internal.utils.extensions.isNormalized
+import com.example.core.internal.utils.extensions.normalize
+import com.example.core.internal.utils.extensions.rotate
+import com.example.core.logger.Logger
+import com.example.core.streamers.bases.BaseCameraStreamer
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit

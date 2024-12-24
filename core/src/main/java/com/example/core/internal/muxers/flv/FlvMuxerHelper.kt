@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.flv
+package com.example.core.internal.muxers.flv
 
 import android.media.MediaFormat
-import io.github.thibaultbee.streampack.internal.muxers.IAudioMuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.IMuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.IVideoMuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.video.CodecID
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.SoundFormat
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.SoundRate
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.SoundSize
+import com.example.core.internal.muxers.IAudioMuxerHelper
+import com.example.core.internal.muxers.IMuxerHelper
+import com.example.core.internal.muxers.IVideoMuxerHelper
+import com.example.core.internal.muxers.flv.tags.video.CodecID
+import com.example.core.internal.muxers.flv.tags.SoundFormat
+import com.example.core.internal.muxers.flv.tags.SoundRate
+import com.example.core.internal.muxers.flv.tags.SoundSize
 
 class FlvMuxerHelper : IMuxerHelper {
     override val video = VideoFlvMuxerHelper()
@@ -40,7 +40,7 @@ class VideoFlvMuxerHelper : IVideoMuxerHelper {
                 MediaFormat.MIMETYPE_VIDEO_VP9,
                 MediaFormat.MIMETYPE_VIDEO_AV1
             )
-            val supportedCodecList = CodecID.entries.mapNotNull {
+            val supportedCodecList = CodecID.values().mapNotNull {
                 try {
                     it.toMimeType()
                 } catch (e: Exception) {
@@ -61,7 +61,7 @@ class AudioFlvMuxerHelper : IAudioMuxerHelper {
      */
     override val supportedEncoders: List<String>
         get() {
-            return SoundFormat.entries.mapNotNull {
+            return SoundFormat.values().mapNotNull {
                 try {
                     it.toMimeType()
                 } catch (e: Exception) {
@@ -70,7 +70,7 @@ class AudioFlvMuxerHelper : IAudioMuxerHelper {
             }
         }
 
-    override fun getSupportedSampleRates() = SoundRate.entries.map { it.toSampleRate() }
+    override fun getSupportedSampleRates() = SoundRate.values().map { it.toSampleRate() }
 
-    override fun getSupportedByteFormats() = SoundSize.entries.map { it.toByteFormat() }
+    override fun getSupportedByteFormats() = SoundSize.values().map { it.toByteFormat() }
 }

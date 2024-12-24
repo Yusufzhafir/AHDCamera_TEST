@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.video.av1
+package com.example.core.internal.utils.av.video.av1
 
 import android.media.MediaFormat
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.ByteBufferWriter
-import io.github.thibaultbee.streampack.internal.utils.extensions.put
-import io.github.thibaultbee.streampack.internal.utils.extensions.putShort
-import io.github.thibaultbee.streampack.internal.utils.extensions.shl
-import io.github.thibaultbee.streampack.internal.utils.extensions.toInt
+import com.example.core.internal.utils.av.buffer.ByteBufferWriter
+import com.example.core.internal.utils.extensions.put
+import com.example.core.internal.utils.extensions.putShort
+import com.example.core.internal.utils.extensions.shl
+import com.example.core.internal.utils.extensions.toInt
 import java.nio.ByteBuffer
 
 class AV1CodecConfigurationRecord(

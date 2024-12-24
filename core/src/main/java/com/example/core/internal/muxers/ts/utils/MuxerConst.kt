@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.ts.utils
+package com.example.core.internal.muxers.ts.utils
 
-import io.github.thibaultbee.streampack.internal.data.Packet
-import io.github.thibaultbee.streampack.internal.muxers.IMuxerListener
+import com.example.core.internal.data.Packet
+import com.example.core.internal.muxers.IMuxerListener
 
 object MuxerConst {
     const val PAT_PACKET_PERIOD = 40

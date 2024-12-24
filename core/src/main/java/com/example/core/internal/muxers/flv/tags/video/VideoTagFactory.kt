@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.flv.tags.video
+package com.example.core.internal.muxers.flv.tags.video
 
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.FlvTag
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.ByteBufferWriter
+import com.example.core.internal.muxers.flv.tags.FlvTag
+import com.example.core.internal.utils.av.buffer.ByteBufferWriter
 
 class VideoTagFactory(
     private val pts: Long,

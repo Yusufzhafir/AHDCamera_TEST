@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.mp4.models
+package com.example.core.internal.muxers.mp4.models
 
-import io.github.thibaultbee.streampack.internal.muxers.mp4.boxes.*
+import com.example.core.internal.muxers.mp4.boxes.*
 
 abstract class AbstractMovieBoxFactory {
     abstract fun build(trackChunks: List<TrackChunks>, dataOffset: Long): Box

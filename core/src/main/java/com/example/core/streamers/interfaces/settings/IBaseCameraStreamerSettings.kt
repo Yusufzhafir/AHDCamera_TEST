@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.streamers.interfaces.settings
+package com.example.core.streamers.interfaces.settings
 
-import io.github.thibaultbee.streampack.utils.CameraSettings
+import com.example.core.utils.CameraSettings
 
 interface IBaseCameraStreamerSettings {
     val camera: CameraSettings

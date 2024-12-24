@@ -14,13 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.sources.camera
+package com.example.core.internal.sources.camera
 
 import android.content.Context
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraMetadata
 import android.os.SystemClock
-import io.github.thibaultbee.streampack.utils.getCameraCharacteristics
+import com.example.core.utils.getCameraCharacteristics
 
 
 object CameraHelper {

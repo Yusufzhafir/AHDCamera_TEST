@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.data
+package com.example.core.data
 
 import android.media.AudioFormat
 import android.media.MediaCodecInfo
 import android.media.MediaFormat
 import android.os.Build
-import io.github.thibaultbee.streampack.internal.utils.extensions.isAudio
-import io.github.thibaultbee.streampack.streamers.bases.BaseStreamer
+import com.example.core.internal.utils.extensions.isAudio
+import com.example.core.streamers.bases.BaseStreamer
 import java.security.InvalidParameterException
 
 /**
@@ -143,7 +143,7 @@ class AudioConfig(
         /**
          * Get the default audio profile
          */
-        private fun getDefaultProfile(mimeType: String) = when (mimeType) {
+        fun getDefaultProfile(mimeType: String) = when (mimeType) {
             MediaFormat.MIMETYPE_AUDIO_AAC -> MediaCodecInfo.CodecProfileLevel.AACObjectLC
             MediaFormat.MIMETYPE_AUDIO_OPUS -> 0
             else -> throw InvalidParameterException("Mimetype not supported: $mimeType")

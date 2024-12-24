@@ -1,6 +1,6 @@
 package com.quectel.multicamera.dialog;
 
-import android.ai.SystemAlg;
+//import android.ai.SystemAlg;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -188,7 +188,7 @@ public class IdentityEntryDialog extends AlertDialog {
                             editTexts[i].setText(pParams.getImageName(i));
                         }
                         //删除算法中的特征点
-                        SystemAlg.deleteFaceFeature(num, pParams.getFaceNumber());
+//                        SystemAlg.deleteFaceFeature(num, pParams.getFaceNumber());
 
                         //后续考虑界面切换
                         layout[pParams.getFaceNumber()-1].setVisibility(View.GONE);

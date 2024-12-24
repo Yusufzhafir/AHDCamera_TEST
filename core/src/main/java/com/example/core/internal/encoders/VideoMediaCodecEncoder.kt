@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.encoders
+package com.example.core.internal.encoders
 
 import android.annotation.SuppressLint
 import android.graphics.SurfaceTexture
@@ -23,15 +23,15 @@ import android.media.MediaFormat
 import android.os.Bundle
 import android.util.Size
 import android.view.Surface
-import io.github.thibaultbee.streampack.data.Config
-import io.github.thibaultbee.streampack.data.VideoConfig
-import io.github.thibaultbee.streampack.internal.gl.EglWindowSurface
-import io.github.thibaultbee.streampack.internal.gl.FullFrameRect
-import io.github.thibaultbee.streampack.internal.gl.Texture2DProgram
-import io.github.thibaultbee.streampack.internal.orientation.ISourceOrientationListener
-import io.github.thibaultbee.streampack.internal.orientation.ISourceOrientationProvider
-import io.github.thibaultbee.streampack.internal.utils.av.video.DynamicRangeProfile
-import io.github.thibaultbee.streampack.listeners.OnErrorListener
+import com.example.core.data.Config
+import com.example.core.data.VideoConfig
+import com.example.core.internal.gl.EglWindowSurface
+import com.example.core.internal.gl.FullFrameRect
+import com.example.core.internal.gl.Texture2DProgram
+import com.example.core.internal.orientation.ISourceOrientationListener
+import com.example.core.internal.orientation.ISourceOrientationProvider
+import com.example.core.internal.utils.av.video.DynamicRangeProfile
+import com.example.core.listeners.OnErrorListener
 import java.util.concurrent.Executors
 
 /**

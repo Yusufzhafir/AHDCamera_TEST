@@ -1,4 +1,4 @@
-package io.github.thibaultbee.streampack.internal.utils.av
+package com.example.core.internal.utils.av
 
 import android.media.MediaFormat
 import android.os.Build
@@ -19,7 +19,7 @@ enum class FourCCs(val value: FourCC) {
 
     companion object {
         fun fromMimeType(mimeType: String) =
-            entries.first { it.value.mimeType == mimeType }
+            values().first { it.value.mimeType == mimeType }
     }
 }
 

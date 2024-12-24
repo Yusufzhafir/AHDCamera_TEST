@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.streamers.file
+package com.example.core.streamers.file
 
 import android.content.Context
-import io.github.thibaultbee.streampack.internal.muxers.mp4.MP4Muxer
-import io.github.thibaultbee.streampack.listeners.OnErrorListener
+import com.example.core.internal.muxers.mp4.MP4Muxer
+import com.example.core.listeners.OnErrorListener
 import java.io.File
 
 /**

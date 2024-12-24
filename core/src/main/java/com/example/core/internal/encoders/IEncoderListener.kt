@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.encoders
+package com.example.core.internal.encoders
 
-import io.github.thibaultbee.streampack.internal.data.Frame
+import com.example.core.internal.data.Frame
 import java.nio.ByteBuffer
 
 interface IEncoderListener {

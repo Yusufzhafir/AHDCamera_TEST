@@ -13,33 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.streamers.bases
+package com.example.core.streamers.bases
 
 import android.Manifest
 import android.content.Context
 import androidx.annotation.RequiresPermission
-import io.github.thibaultbee.streampack.data.AudioConfig
-import io.github.thibaultbee.streampack.data.Config
-import io.github.thibaultbee.streampack.data.VideoConfig
-import io.github.thibaultbee.streampack.error.StreamPackError
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.data.Packet
-import io.github.thibaultbee.streampack.internal.encoders.AudioMediaCodecEncoder
-import io.github.thibaultbee.streampack.internal.encoders.IEncoderListener
-import io.github.thibaultbee.streampack.internal.encoders.VideoMediaCodecEncoder
-import io.github.thibaultbee.streampack.internal.endpoints.IEndpoint
-import io.github.thibaultbee.streampack.internal.events.EventHandler
-import io.github.thibaultbee.streampack.internal.muxers.IMuxer
-import io.github.thibaultbee.streampack.internal.muxers.IMuxerListener
-import io.github.thibaultbee.streampack.internal.orientation.ISourceOrientationProvider
-import io.github.thibaultbee.streampack.internal.sources.IAudioSource
-import io.github.thibaultbee.streampack.internal.sources.IVideoSource
-import io.github.thibaultbee.streampack.listeners.OnErrorListener
-import io.github.thibaultbee.streampack.logger.Logger
-import io.github.thibaultbee.streampack.streamers.helpers.IConfigurationHelper
-import io.github.thibaultbee.streampack.streamers.helpers.StreamerConfigurationHelper
-import io.github.thibaultbee.streampack.streamers.interfaces.IStreamer
-import io.github.thibaultbee.streampack.streamers.settings.BaseStreamerSettings
+import com.example.core.data.AudioConfig
+import com.example.core.data.Config
+import com.example.core.data.VideoConfig
+import com.example.core.error.StreamPackError
+import com.example.core.internal.data.Frame
+import com.example.core.internal.data.Packet
+import com.example.core.internal.encoders.AudioMediaCodecEncoder
+import com.example.core.internal.encoders.IEncoderListener
+import com.example.core.internal.encoders.VideoMediaCodecEncoder
+import com.example.core.internal.endpoints.IEndpoint
+import com.example.core.internal.events.EventHandler
+import com.example.core.internal.muxers.IMuxer
+import com.example.core.internal.muxers.IMuxerListener
+import com.example.core.internal.orientation.ISourceOrientationProvider
+import com.example.core.internal.sources.IAudioSource
+import com.example.core.internal.sources.IVideoSource
+import com.example.core.listeners.OnErrorListener
+import com.example.core.logger.Logger
+import com.example.core.streamers.helpers.IConfigurationHelper
+import com.example.core.streamers.helpers.StreamerConfigurationHelper
+import com.example.core.streamers.interfaces.IStreamer
+import com.example.core.streamers.settings.BaseStreamerSettings
 import kotlinx.coroutines.runBlocking
 import java.nio.ByteBuffer
 

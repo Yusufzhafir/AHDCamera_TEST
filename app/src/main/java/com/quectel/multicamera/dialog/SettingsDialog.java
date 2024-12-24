@@ -1162,7 +1162,7 @@ public class SettingsDialog extends AlertDialog {
             pParams.setPreviewNum(Math.min(pParams.getPreviewNum(), 3));
         }
 
-        noAdapter = new ArrayAdapter<Integer>(mContext, R.layout.support_simple_spinner_dropdown_item, noList);
+        noAdapter = new ArrayAdapter<Integer>(mContext, android.R.layout.simple_spinner_dropdown_item, noList);
 
         preNumSpinner.setAdapter(noAdapter);
 

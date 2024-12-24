@@ -1,6 +1,6 @@
 package com.quectel.multicamera.dialog;
 
-import android.ai.SystemAlg;
+//import android.ai.SystemAlg;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -27,7 +27,7 @@ public class DMSConfigDialog extends AlertDialog {
     private Context mContext;
     private Handler mHandler;
     private PreviewParams pParams ;
-    private static String mPath;
+//    private static String mPath;
     private int width, height;
 
     private static final String EVENT_SMOKE = "SMOKE_TYPE";
@@ -71,7 +71,7 @@ public class DMSConfigDialog extends AlertDialog {
         mHandler = handler;
         this.width = width;
         this.height = height;
-        mPath = SystemAlg.getDMSConfigFilePath();
+//        mPath = SystemAlg.getDMSConfigFilePath();
     }
 
     @Override
@@ -177,13 +177,13 @@ public class DMSConfigDialog extends AlertDialog {
         vHeadDown.setOnCheckedChangeListener(new SwitchCheckChangeEvent());
 
         if (pParams.getDMSOpenSpeed() < 0){
-            pParams.setDMSOpenSpeed(SystemAlg.getDmsVel());
+//            pParams.setDMSOpenSpeed(SystemAlg.getDmsVel());
         }
         dms_open_speed_edit.setText(pParams.getDMSOpenSpeed()+"");
-        int ret = SystemAlg.setDmsVel(pParams.getDMSOpenSpeed());
-        if (ret != 0){
-            Toast.makeText(mContext, mContext.getString(R.string.dms_open_speed_failed), Toast.LENGTH_SHORT).show();
-        }
+//        int ret = SystemAlg.setDmsVel(pParams.getDMSOpenSpeed());
+//        if (ret != 0){
+//            Toast.makeText(mContext, mContext.getString(R.string.dms_open_speed_failed), Toast.LENGTH_SHORT).show();
+//        }
 //        System.out.println("zyz --> MvSetDsmVel ret = "+ret);
 
         vIdentity.setChecked(pParams.getIdentityEnable());
@@ -192,89 +192,89 @@ public class DMSConfigDialog extends AlertDialog {
         eIdentityCheckInterval.setText(pParams.getIdentityCheckInterval()+"");
         eIdentityCheckInterval.setEnabled(!pParams.getDMSEnable() && !vIdentity.isChecked());
         try {
-            String value = ConfigMgrUtils.readCfgValue(mPath, EVENT_SMOKE, "null");
+//            String value = ConfigMgrUtils.readCfgValue(mPath, EVENT_SMOKE, "null");
 //            System.out.println("zyz --> value --> "+value);
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                vSmoke.setChecked(value.equals("1"));
-                vSmoke.setEnabled(!pParams.getDMSEnable());
-                eSmokeCumTime.setEnabled(!pParams.getDMSEnable() && !vSmoke.isChecked());
-                eSmokeIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vSmoke.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_SMOKE, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
-                eSmokeCumTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_SMOKE, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
-                eSmokeIntervalNextTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            //EVENT_CALL
-            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_CALL, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                vCall.setChecked(value.equals("1"));
-                vCall.setEnabled(!pParams.getDMSEnable());
-                eCallCumTime.setEnabled(!pParams.getDMSEnable() && !vCall.isChecked());
-                eCallIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vCall.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_CALL, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
-                eCallCumTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_CALL, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
-                eCallIntervalNextTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            //EVENT_YAWN
-            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_YAWN, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                vYawn.setChecked(value.equals("1"));
-                vYawn.setEnabled(!pParams.getDMSEnable());
-                eYawnCumTime.setEnabled(!pParams.getDMSEnable() && !vYawn.isChecked());
-                eYawnIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vYawn.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_YAWN, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
-                eYawnCumTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_YAWN, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
-                eYawnIntervalNextTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                vSmoke.setChecked(value.equals("1"));
+//                vSmoke.setEnabled(!pParams.getDMSEnable());
+//                eSmokeCumTime.setEnabled(!pParams.getDMSEnable() && !vSmoke.isChecked());
+//                eSmokeIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vSmoke.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_SMOKE, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
+//                eSmokeCumTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_SMOKE, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
+//                eSmokeIntervalNextTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            //EVENT_CALL
+//            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_CALL, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                vCall.setChecked(value.equals("1"));
+//                vCall.setEnabled(!pParams.getDMSEnable());
+//                eCallCumTime.setEnabled(!pParams.getDMSEnable() && !vCall.isChecked());
+//                eCallIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vCall.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_CALL, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
+//                eCallCumTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_CALL, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
+//                eCallIntervalNextTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            //EVENT_YAWN
+//            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_YAWN, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                vYawn.setChecked(value.equals("1"));
+//                vYawn.setEnabled(!pParams.getDMSEnable());
+//                eYawnCumTime.setEnabled(!pParams.getDMSEnable() && !vYawn.isChecked());
+//                eYawnIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vYawn.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_YAWN, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
+//                eYawnCumTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_YAWN, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
+//                eYawnIntervalNextTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
 
             //EVENT_NO_ALIGNMENT
 //            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_NO_ALIGNMENT, "null");
@@ -305,257 +305,257 @@ public class DMSConfigDialog extends AlertDialog {
 //            }
 
             //EVENT_CAMERA_SHIELD
-            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_CAMERA_SHIELD, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                vCameraShield.setChecked(value.equals("1"));
-                vCameraShield.setEnabled(!pParams.getDMSEnable());
-                eCameraCumTime.setEnabled(!pParams.getDMSEnable() && !vCameraShield.isChecked());
-                eCameraIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vCameraShield.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_CAMERA_SHIELD, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
-                eCameraCumTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_CAMERA_SHIELD, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
-                eCameraIntervalNextTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            //EVENT_ABSENT_DRIVER
-            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_ABSENT_DRIVER, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                vAbsentDriver.setChecked(value.equals("1"));
-                vAbsentDriver.setEnabled(!pParams.getDMSEnable());
-                eAbnormalDriverCumTime.setEnabled(!pParams.getDMSEnable() && !vAbsentDriver.isChecked());
-                eAbnormalDriverIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vAbsentDriver.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_ABSENT_DRIVER, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
-                eAbnormalDriverCumTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_ABSENT_DRIVER, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
-                eAbnormalDriverIntervalNextTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            //EVENT_EYES_MASKED
-            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_EYES_MASKED, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                vEyesMasked.setChecked(value.equals("1"));
-                vEyesMasked.setEnabled(!pParams.getDMSEnable());
-                eEyesMaskedCumTime.setEnabled(!pParams.getDMSEnable() && !vEyesMasked.isChecked());
-                eEyesMaskedIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vEyesMasked.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_EYES_MASKED, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
-                eEyesMaskedCumTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_EYES_MASKED, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
-                eEyesMaskedIntervalNextTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            //EVENT_MOUTH_MASKED
-            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_MOUTH_MASKED, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                vMouthMasked.setChecked(value.equals("1"));
-                vMouthMasked.setEnabled(!pParams.getDMSEnable());
-                eMouthMaskedCumTime.setEnabled(!pParams.getDMSEnable() && !vMouthMasked.isChecked());
-                eMouthMaskedIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vMouthMasked.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_MOUTH_MASKED, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
-                eMouthMaskedCumTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_MOUTH_MASKED, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
-                eMouthMaskedIntervalNextTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            //EVENT_EYE_CLOSING
-            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_EYE_CLOSING, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                vEyesClosing.setChecked(value.equals("1"));
-                vEyesClosing.setEnabled(!pParams.getDMSEnable());
-                eEyesCloseCumTime.setEnabled(!pParams.getDMSEnable() && !vEyesClosing.isChecked());
-                eEyesCloseIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vEyesClosing.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_EYE_CLOSING, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
-                eEyesCloseCumTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_EYE_CLOSING, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
-                eEyesCloseIntervalNextTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            //EVENT_SWINGING_LEFT
-            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_SWINGING_LEFT, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                vSwingingLeft.setChecked(value.equals("1"));
-                vSwingingLeft.setEnabled(!pParams.getDMSEnable());
-                eLeftCumTime.setEnabled(!pParams.getDMSEnable() && !vSwingingLeft.isChecked());
-                eLeftIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vSwingingLeft.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_SWINGING_LEFT, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
-                eLeftCumTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_SWINGING_LEFT, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
-                eLeftIntervalNextTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            //EVENT_SWINGING_RIGHT
-            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_SWINGING_RIGHT, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                vSwingingRight.setChecked(value.equals("1"));
-                vSwingingRight.setEnabled(!pParams.getDMSEnable());
-                eRightCumTime.setEnabled(!pParams.getDMSEnable() && !vSwingingRight.isChecked());
-                eRightIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vSwingingRight.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_SWINGING_RIGHT, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
-                eRightCumTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_SWINGING_RIGHT, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
-                eRightIntervalNextTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            //EVENT_HEAD_UP
-            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_HEAD_UP, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                vHeadUp.setChecked(value.equals("1"));
-                vHeadUp.setEnabled(!pParams.getDMSEnable());
-                eUpCumTime.setEnabled(!pParams.getDMSEnable() && !vHeadUp.isChecked());
-                eUpIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vHeadUp.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_HEAD_UP, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
-                eUpCumTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_HEAD_UP, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
-                eUpIntervalNextTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            //EVENT_HEAD_DOWN
-            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_HEAD_DOWN, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                vHeadDown.setChecked(value.equals("1"));
-                vHeadDown.setEnabled(!pParams.getDMSEnable());
-                eDownCumTime.setEnabled(!pParams.getDMSEnable() && !vHeadDown.isChecked());
-                eDownIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vHeadDown.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_HEAD_DOWN, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
-                eDownCumTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_HEAD_DOWN, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
-                eDownIntervalNextTime.setText(sec+"");
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-        } catch (IOException e) {
+//            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_CAMERA_SHIELD, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                vCameraShield.setChecked(value.equals("1"));
+//                vCameraShield.setEnabled(!pParams.getDMSEnable());
+//                eCameraCumTime.setEnabled(!pParams.getDMSEnable() && !vCameraShield.isChecked());
+//                eCameraIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vCameraShield.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_CAMERA_SHIELD, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
+//                eCameraCumTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_CAMERA_SHIELD, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
+//                eCameraIntervalNextTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            //EVENT_ABSENT_DRIVER
+//            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_ABSENT_DRIVER, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                vAbsentDriver.setChecked(value.equals("1"));
+//                vAbsentDriver.setEnabled(!pParams.getDMSEnable());
+//                eAbnormalDriverCumTime.setEnabled(!pParams.getDMSEnable() && !vAbsentDriver.isChecked());
+//                eAbnormalDriverIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vAbsentDriver.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_ABSENT_DRIVER, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
+//                eAbnormalDriverCumTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_ABSENT_DRIVER, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
+//                eAbnormalDriverIntervalNextTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            //EVENT_EYES_MASKED
+//            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_EYES_MASKED, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                vEyesMasked.setChecked(value.equals("1"));
+//                vEyesMasked.setEnabled(!pParams.getDMSEnable());
+//                eEyesMaskedCumTime.setEnabled(!pParams.getDMSEnable() && !vEyesMasked.isChecked());
+//                eEyesMaskedIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vEyesMasked.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_EYES_MASKED, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
+//                eEyesMaskedCumTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_EYES_MASKED, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
+//                eEyesMaskedIntervalNextTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            //EVENT_MOUTH_MASKED
+//            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_MOUTH_MASKED, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                vMouthMasked.setChecked(value.equals("1"));
+//                vMouthMasked.setEnabled(!pParams.getDMSEnable());
+//                eMouthMaskedCumTime.setEnabled(!pParams.getDMSEnable() && !vMouthMasked.isChecked());
+//                eMouthMaskedIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vMouthMasked.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_MOUTH_MASKED, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
+//                eMouthMaskedCumTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_MOUTH_MASKED, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
+//                eMouthMaskedIntervalNextTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            //EVENT_EYE_CLOSING
+//            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_EYE_CLOSING, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                vEyesClosing.setChecked(value.equals("1"));
+//                vEyesClosing.setEnabled(!pParams.getDMSEnable());
+//                eEyesCloseCumTime.setEnabled(!pParams.getDMSEnable() && !vEyesClosing.isChecked());
+//                eEyesCloseIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vEyesClosing.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_EYE_CLOSING, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
+//                eEyesCloseCumTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_EYE_CLOSING, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
+//                eEyesCloseIntervalNextTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            //EVENT_SWINGING_LEFT
+//            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_SWINGING_LEFT, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                vSwingingLeft.setChecked(value.equals("1"));
+//                vSwingingLeft.setEnabled(!pParams.getDMSEnable());
+//                eLeftCumTime.setEnabled(!pParams.getDMSEnable() && !vSwingingLeft.isChecked());
+//                eLeftIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vSwingingLeft.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_SWINGING_LEFT, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
+//                eLeftCumTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_SWINGING_LEFT, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
+//                eLeftIntervalNextTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            //EVENT_SWINGING_RIGHT
+//            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_SWINGING_RIGHT, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                vSwingingRight.setChecked(value.equals("1"));
+//                vSwingingRight.setEnabled(!pParams.getDMSEnable());
+//                eRightCumTime.setEnabled(!pParams.getDMSEnable() && !vSwingingRight.isChecked());
+//                eRightIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vSwingingRight.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_SWINGING_RIGHT, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
+//                eRightCumTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_SWINGING_RIGHT, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
+//                eRightIntervalNextTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            //EVENT_HEAD_UP
+//            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_HEAD_UP, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                vHeadUp.setChecked(value.equals("1"));
+//                vHeadUp.setEnabled(!pParams.getDMSEnable());
+//                eUpCumTime.setEnabled(!pParams.getDMSEnable() && !vHeadUp.isChecked());
+//                eUpIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vHeadUp.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_HEAD_UP, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
+//                eUpCumTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_HEAD_UP, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
+//                eUpIntervalNextTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            //EVENT_HEAD_DOWN
+//            value = ConfigMgrUtils.readCfgValue(mPath, EVENT_HEAD_DOWN, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                vHeadDown.setChecked(value.equals("1"));
+//                vHeadDown.setEnabled(!pParams.getDMSEnable());
+//                eDownCumTime.setEnabled(!pParams.getDMSEnable() && !vHeadDown.isChecked());
+//                eDownIntervalNextTime.setEnabled(!pParams.getDMSEnable() && !vHeadDown.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_WARN_FRAME, EVENT_HEAD_DOWN, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/WARN_TIME_FRAME;
+//                eDownCumTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//            value = ConfigMgrUtils.readCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_HEAD_DOWN, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                float sec = Float.parseFloat(value)/ABORM_INTERVAL_TIME_FRAME;
+//                eDownIntervalNextTime.setText(sec+"");
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+        } catch (Exception e) {
             System.out.println("zyz --> "+e);
             e.printStackTrace();
         }
@@ -688,11 +688,11 @@ public class DMSConfigDialog extends AlertDialog {
                     Toast.makeText(mContext, mContext.getString(R.string.dms_open_speed_out), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                int ret = SystemAlg.setDmsVel(Float.parseFloat(dms_open_speed_edit.getText().toString()));
-                if (ret != 0){
-                    Toast.makeText(mContext, mContext.getString(R.string.dms_open_speed_failed), Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                int ret = SystemAlg.setDmsVel(Float.parseFloat(dms_open_speed_edit.getText().toString()));
+//                if (ret != 0){
+//                    Toast.makeText(mContext, mContext.getString(R.string.dms_open_speed_failed), Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
 
                 if (eSmokeCumTime.getText().toString().equals("") || Float.parseFloat(eSmokeCumTime.getText().toString())<0 || Float.parseFloat(eSmokeCumTime.getText().toString())>CUM_TIME){
                     Toast.makeText(mContext, mContext.getString(R.string.dms_cum_time_out), Toast.LENGTH_SHORT).show();
@@ -828,85 +828,85 @@ public class DMSConfigDialog extends AlertDialog {
                 }
 
                 try {
-                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_SMOKE, vSmoke.isChecked()?"1":"0");
-                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_CALL, vCall.isChecked()?"1":"0");
-                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_YAWN, vYawn.isChecked()?"1":"0");
-//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_NO_ALIGNMENT, vNoAlignment.isChecked()?"1":"0");
-                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_CAMERA_SHIELD, vCameraShield.isChecked()?"1":"0");
-                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_ABSENT_DRIVER, vAbsentDriver.isChecked()?"1":"0");
-                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_EYES_MASKED, vEyesMasked.isChecked()?"1":"0");
-                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_MOUTH_MASKED, vMouthMasked.isChecked()?"1":"0");
-                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_EYE_CLOSING, vEyesClosing.isChecked()?"1":"0");
-                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_SWINGING_LEFT, vSwingingLeft.isChecked()?"1":"0");
-                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_SWINGING_RIGHT, vSwingingRight.isChecked()?"1":"0");
-                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_HEAD_UP, vHeadUp.isChecked()?"1":"0");
-                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_HEAD_DOWN, vHeadDown.isChecked()?"1":"0");
-
-                    int frame = (int)(Float.parseFloat(eSmokeCumTime.getText().toString())*WARN_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_SMOKE, frame+"");
-                    frame = (int)(Float.parseFloat(eSmokeIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_SMOKE, frame+"");
-
-                    frame = (int)(Float.parseFloat(eCallCumTime.getText().toString())*WARN_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_CALL, frame+"");
-                    frame = (int)(Float.parseFloat(eCallIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_CALL, frame+"");
-
-                    frame = (int)(Float.parseFloat(eYawnCumTime.getText().toString())*WARN_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_YAWN, frame+"");
-                    frame = (int)(Float.parseFloat(eYawnIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_YAWN, frame+"");
-
-//                    frame = (int)(Float.parseFloat(eSeatCumTime.getText().toString())*WARN_TIME_FRAME);
-//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_NO_ALIGNMENT, frame+"");
-//                    frame = (int)(Float.parseFloat(eSeatIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_NO_ALIGNMENT, frame+"");
-
-                    frame = (int)(Float.parseFloat(eCameraCumTime.getText().toString())*WARN_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_CAMERA_SHIELD, frame+"");
-                    frame = (int)(Float.parseFloat(eCameraIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_CAMERA_SHIELD, frame+"");
-
-                    frame = (int)(Float.parseFloat(eAbnormalDriverCumTime.getText().toString())*WARN_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_ABSENT_DRIVER, frame+"");
-                    frame = (int)(Float.parseFloat(eAbnormalDriverIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_ABSENT_DRIVER, frame+"");
-
-                    frame = (int)(Float.parseFloat(eEyesMaskedCumTime.getText().toString())*WARN_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_EYES_MASKED, frame+"");
-                    frame = (int)(Float.parseFloat(eEyesMaskedIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_EYES_MASKED, frame+"");
-
-                    frame = (int)(Float.parseFloat(eMouthMaskedCumTime.getText().toString())*WARN_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_MOUTH_MASKED, frame+"");
-                    frame = (int)(Float.parseFloat(eMouthMaskedIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_MOUTH_MASKED, frame+"");
-
-                    frame = (int)(Float.parseFloat(eEyesCloseCumTime.getText().toString())*WARN_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_EYE_CLOSING, frame+"");
-                    frame = (int)(Float.parseFloat(eEyesCloseIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_EYE_CLOSING, frame+"");
-
-                    frame = (int)(Float.parseFloat(eLeftCumTime.getText().toString())*WARN_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_SWINGING_LEFT, frame+"");
-                    frame = (int)(Float.parseFloat(eLeftIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_SWINGING_LEFT, frame+"");
-
-                    frame = (int)(Float.parseFloat(eRightCumTime.getText().toString())*WARN_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_SWINGING_RIGHT, frame+"");
-                    frame = (int)(Float.parseFloat(eRightIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_SWINGING_RIGHT, frame+"");
-
-                    frame = (int)(Float.parseFloat(eUpCumTime.getText().toString())*WARN_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_HEAD_UP, frame+"");
-                    frame = (int)(Float.parseFloat(eUpIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_HEAD_UP, frame+"");
-
-                    frame = (int)(Float.parseFloat(eDownCumTime.getText().toString())*WARN_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_HEAD_DOWN, frame+"");
-                    frame = (int)(Float.parseFloat(eDownIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
-                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_HEAD_DOWN, frame+"");
-                } catch (IOException e) {
+//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_SMOKE, vSmoke.isChecked()?"1":"0");
+//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_CALL, vCall.isChecked()?"1":"0");
+//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_YAWN, vYawn.isChecked()?"1":"0");
+////                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_NO_ALIGNMENT, vNoAlignment.isChecked()?"1":"0");
+//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_CAMERA_SHIELD, vCameraShield.isChecked()?"1":"0");
+//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_ABSENT_DRIVER, vAbsentDriver.isChecked()?"1":"0");
+//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_EYES_MASKED, vEyesMasked.isChecked()?"1":"0");
+//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_MOUTH_MASKED, vMouthMasked.isChecked()?"1":"0");
+//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_EYE_CLOSING, vEyesClosing.isChecked()?"1":"0");
+//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_SWINGING_LEFT, vSwingingLeft.isChecked()?"1":"0");
+//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_SWINGING_RIGHT, vSwingingRight.isChecked()?"1":"0");
+//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_HEAD_UP, vHeadUp.isChecked()?"1":"0");
+//                    ConfigMgrUtils.writeCfgValue(mPath, EVENT_HEAD_DOWN, vHeadDown.isChecked()?"1":"0");
+//
+//                    int frame = (int)(Float.parseFloat(eSmokeCumTime.getText().toString())*WARN_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_SMOKE, frame+"");
+//                    frame = (int)(Float.parseFloat(eSmokeIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_SMOKE, frame+"");
+//
+//                    frame = (int)(Float.parseFloat(eCallCumTime.getText().toString())*WARN_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_CALL, frame+"");
+//                    frame = (int)(Float.parseFloat(eCallIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_CALL, frame+"");
+//
+//                    frame = (int)(Float.parseFloat(eYawnCumTime.getText().toString())*WARN_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_YAWN, frame+"");
+//                    frame = (int)(Float.parseFloat(eYawnIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_YAWN, frame+"");
+//
+////                    frame = (int)(Float.parseFloat(eSeatCumTime.getText().toString())*WARN_TIME_FRAME);
+////                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_NO_ALIGNMENT, frame+"");
+////                    frame = (int)(Float.parseFloat(eSeatIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+////                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_NO_ALIGNMENT, frame+"");
+//
+//                    frame = (int)(Float.parseFloat(eCameraCumTime.getText().toString())*WARN_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_CAMERA_SHIELD, frame+"");
+//                    frame = (int)(Float.parseFloat(eCameraIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_CAMERA_SHIELD, frame+"");
+//
+//                    frame = (int)(Float.parseFloat(eAbnormalDriverCumTime.getText().toString())*WARN_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_ABSENT_DRIVER, frame+"");
+//                    frame = (int)(Float.parseFloat(eAbnormalDriverIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_ABSENT_DRIVER, frame+"");
+//
+//                    frame = (int)(Float.parseFloat(eEyesMaskedCumTime.getText().toString())*WARN_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_EYES_MASKED, frame+"");
+//                    frame = (int)(Float.parseFloat(eEyesMaskedIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_EYES_MASKED, frame+"");
+//
+//                    frame = (int)(Float.parseFloat(eMouthMaskedCumTime.getText().toString())*WARN_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_MOUTH_MASKED, frame+"");
+//                    frame = (int)(Float.parseFloat(eMouthMaskedIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_MOUTH_MASKED, frame+"");
+//
+//                    frame = (int)(Float.parseFloat(eEyesCloseCumTime.getText().toString())*WARN_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_EYE_CLOSING, frame+"");
+//                    frame = (int)(Float.parseFloat(eEyesCloseIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_EYE_CLOSING, frame+"");
+//
+//                    frame = (int)(Float.parseFloat(eLeftCumTime.getText().toString())*WARN_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_SWINGING_LEFT, frame+"");
+//                    frame = (int)(Float.parseFloat(eLeftIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_SWINGING_LEFT, frame+"");
+//
+//                    frame = (int)(Float.parseFloat(eRightCumTime.getText().toString())*WARN_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_SWINGING_RIGHT, frame+"");
+//                    frame = (int)(Float.parseFloat(eRightIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_SWINGING_RIGHT, frame+"");
+//
+//                    frame = (int)(Float.parseFloat(eUpCumTime.getText().toString())*WARN_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_HEAD_UP, frame+"");
+//                    frame = (int)(Float.parseFloat(eUpIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_HEAD_UP, frame+"");
+//
+//                    frame = (int)(Float.parseFloat(eDownCumTime.getText().toString())*WARN_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_WARN_FRAME, EVENT_HEAD_DOWN, frame+"");
+//                    frame = (int)(Float.parseFloat(eDownIntervalNextTime.getText().toString())*ABORM_INTERVAL_TIME_FRAME);
+//                    ConfigMgrUtils.writeCfgValue(mPath, DSM_ABORM_INTER_FRAME, EVENT_HEAD_DOWN, frame+"");
+                } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(mContext, mContext.getString(R.string.write_conf_err), Toast.LENGTH_SHORT).show();
                     return;

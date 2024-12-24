@@ -1,4 +1,4 @@
-package io.github.thibaultbee.streampack.internal.utils.av.video
+package com.example.core.internal.utils.av.video
 
 import android.hardware.camera2.params.DynamicRangeProfiles
 import android.media.MediaCodecInfo.CodecProfileLevel.AV1ProfileMain10

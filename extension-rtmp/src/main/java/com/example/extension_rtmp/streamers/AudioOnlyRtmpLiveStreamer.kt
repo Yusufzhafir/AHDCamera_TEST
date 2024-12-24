@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.ext.rtmp.streamers
+package com.example.extension_rtmp.streamers
 
 import android.content.Context
-import io.github.thibaultbee.streampack.ext.rtmp.internal.endpoints.RtmpProducer
-import io.github.thibaultbee.streampack.internal.muxers.flv.FlvMuxer
-import io.github.thibaultbee.streampack.listeners.OnConnectionListener
-import io.github.thibaultbee.streampack.listeners.OnErrorListener
-import io.github.thibaultbee.streampack.streamers.live.BaseAudioOnlyLiveStreamer
+import com.example.core.internal.muxers.flv.FlvMuxer
+import com.example.core.listeners.OnConnectionListener
+import com.example.core.listeners.OnErrorListener
+import com.example.core.streamers.live.BaseAudioOnlyLiveStreamer
+import com.example.extension_rtmp.internal.endpoints.RtmpProducer
 
 /**
  * A [BaseAudioOnlyLiveStreamer] that sends only microphone frames to a remote RTMP device.

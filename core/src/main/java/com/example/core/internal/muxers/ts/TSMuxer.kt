@@ -13,28 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.ts
+package com.example.core.internal.muxers.ts
 
 import android.media.MediaCodecInfo
 import android.media.MediaFormat
-import io.github.thibaultbee.streampack.data.AudioConfig
-import io.github.thibaultbee.streampack.data.Config
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.muxers.IMuxer
-import io.github.thibaultbee.streampack.internal.muxers.IMuxerListener
-import io.github.thibaultbee.streampack.internal.muxers.ts.data.Service
-import io.github.thibaultbee.streampack.internal.muxers.ts.data.Stream
-import io.github.thibaultbee.streampack.internal.muxers.ts.data.TsServiceInfo
-import io.github.thibaultbee.streampack.internal.muxers.ts.packets.Pat
-import io.github.thibaultbee.streampack.internal.muxers.ts.packets.Pes
-import io.github.thibaultbee.streampack.internal.muxers.ts.packets.Pmt
-import io.github.thibaultbee.streampack.internal.muxers.ts.packets.Sdt
-import io.github.thibaultbee.streampack.internal.muxers.ts.utils.MuxerConst
-import io.github.thibaultbee.streampack.internal.muxers.ts.utils.TSConst
-import io.github.thibaultbee.streampack.internal.muxers.ts.utils.av.OpusControlHeader
-import io.github.thibaultbee.streampack.internal.orientation.ISourceOrientationProvider
-import io.github.thibaultbee.streampack.internal.utils.av.audio.aac.ADTSFrameWriter
-import io.github.thibaultbee.streampack.internal.utils.av.audio.aac.LATMFrameWriter
+import com.example.core.data.AudioConfig
+import com.example.core.data.Config
+import com.example.core.internal.data.Frame
+import com.example.core.internal.muxers.IMuxer
+import com.example.core.internal.muxers.IMuxerListener
+import com.example.core.internal.muxers.ts.data.Service
+import com.example.core.internal.muxers.ts.data.Stream
+import com.example.core.internal.muxers.ts.data.TsServiceInfo
+import com.example.core.internal.muxers.ts.packets.Pat
+import com.example.core.internal.muxers.ts.packets.Pes
+import com.example.core.internal.muxers.ts.packets.Pmt
+import com.example.core.internal.muxers.ts.packets.Sdt
+import com.example.core.internal.muxers.ts.utils.MuxerConst
+import com.example.core.internal.muxers.ts.utils.TSConst
+import com.example.core.internal.muxers.ts.utils.av.OpusControlHeader
+import com.example.core.internal.orientation.ISourceOrientationProvider
+import com.example.core.internal.utils.av.audio.aac.ADTSFrameWriter
+import com.example.core.internal.utils.av.audio.aac.LATMFrameWriter
 import java.nio.ByteBuffer
 import java.util.MissingFormatArgumentException
 import kotlin.random.Random

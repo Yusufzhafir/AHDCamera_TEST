@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.ts.utils
+package com.example.core.internal.muxers.ts.utils
 
 object TSConst {
     const val SYSTEM_CLOCK_FREQ = 27000000

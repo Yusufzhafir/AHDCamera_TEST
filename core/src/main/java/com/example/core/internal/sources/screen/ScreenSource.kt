@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.sources.screen
+package com.example.core.internal.sources.screen
 
 import android.content.Context
 import android.hardware.display.DisplayManager
@@ -25,16 +25,16 @@ import android.os.HandlerThread
 import android.util.Size
 import android.view.Surface
 import androidx.activity.result.ActivityResult
-import io.github.thibaultbee.streampack.data.VideoConfig
-import io.github.thibaultbee.streampack.error.StreamPackError
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.orientation.AbstractSourceOrientationProvider
-import io.github.thibaultbee.streampack.internal.sources.IVideoSource
-import io.github.thibaultbee.streampack.internal.utils.extensions.isDevicePortrait
-import io.github.thibaultbee.streampack.internal.utils.extensions.landscapize
-import io.github.thibaultbee.streampack.internal.utils.extensions.portraitize
-import io.github.thibaultbee.streampack.listeners.OnErrorListener
-import io.github.thibaultbee.streampack.logger.Logger
+import com.example.core.data.VideoConfig
+import com.example.core.error.StreamPackError
+import com.example.core.internal.data.Frame
+import com.example.core.internal.orientation.AbstractSourceOrientationProvider
+import com.example.core.internal.sources.IVideoSource
+import com.example.core.internal.utils.extensions.isDevicePortrait
+import com.example.core.internal.utils.extensions.landscapize
+import com.example.core.internal.utils.extensions.portraitize
+import com.example.core.listeners.OnErrorListener
+import com.example.core.logger.Logger
 import java.nio.ByteBuffer
 
 class ScreenSource(

@@ -13,8 +13,9 @@ import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
-import android.support.annotation.RawRes;
 import android.util.Log;
+
+import androidx.annotation.RawRes;
 
 import java.io.Closeable;
 import java.io.IOException;

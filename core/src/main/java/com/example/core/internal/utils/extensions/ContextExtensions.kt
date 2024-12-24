@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.extensions
+package com.example.core.internal.utils.extensions
 
 import android.content.Context
 import android.content.res.Configuration.ORIENTATION_LANDSCAPE
@@ -21,9 +21,9 @@ import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.hardware.display.DisplayManager
 import android.view.Display
 import android.view.Surface
-import io.github.thibaultbee.streampack.R
-import io.github.thibaultbee.streampack.internal.muxers.ts.data.TsServiceInfo
-import io.github.thibaultbee.streampack.utils.OrientationUtils
+import com.example.core.R
+import com.example.core.internal.muxers.ts.data.TsServiceInfo
+import com.example.core.utils.OrientationUtils
 
 /**
  * Returns the device orientation in degrees from the natural orientation: portrait.

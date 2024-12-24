@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.sources.camera
+package com.example.core.internal.sources.camera
 
 import android.Manifest
 import android.content.Context
@@ -21,20 +21,20 @@ import android.hardware.camera2.CameraCharacteristics
 import android.util.Size
 import android.view.Surface
 import androidx.annotation.RequiresPermission
-import io.github.thibaultbee.streampack.data.VideoConfig
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.orientation.AbstractSourceOrientationProvider
-import io.github.thibaultbee.streampack.internal.sources.IVideoSource
-import io.github.thibaultbee.streampack.internal.utils.av.video.DynamicRangeProfile
-import io.github.thibaultbee.streampack.internal.utils.extensions.deviceOrientation
-import io.github.thibaultbee.streampack.internal.utils.extensions.isDevicePortrait
-import io.github.thibaultbee.streampack.internal.utils.extensions.landscapize
-import io.github.thibaultbee.streampack.internal.utils.extensions.portraitize
-import io.github.thibaultbee.streampack.utils.CameraSettings
-import io.github.thibaultbee.streampack.utils.cameraList
-import io.github.thibaultbee.streampack.utils.defaultCameraId
-import io.github.thibaultbee.streampack.utils.getFacingDirection
-import io.github.thibaultbee.streampack.utils.isFrameRateSupported
+import com.example.core.data.VideoConfig
+import com.example.core.internal.data.Frame
+import com.example.core.internal.orientation.AbstractSourceOrientationProvider
+import com.example.core.internal.sources.IVideoSource
+import com.example.core.internal.utils.av.video.DynamicRangeProfile
+import com.example.core.internal.utils.extensions.deviceOrientation
+import com.example.core.internal.utils.extensions.isDevicePortrait
+import com.example.core.internal.utils.extensions.landscapize
+import com.example.core.internal.utils.extensions.portraitize
+import com.example.core.utils.CameraSettings
+import com.example.core.utils.cameraList
+import com.example.core.utils.defaultCameraId
+import com.example.core.utils.getFacingDirection
+import com.example.core.utils.isFrameRateSupported
 import kotlinx.coroutines.runBlocking
 import java.nio.ByteBuffer
 import kotlin.math.max

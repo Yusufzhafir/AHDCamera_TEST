@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.mp4.boxes
+package com.example.core.internal.muxers.mp4.boxes
 
 import android.util.Size
-import io.github.thibaultbee.streampack.internal.muxers.mp4.utils.TimeUtils
-import io.github.thibaultbee.streampack.internal.utils.extensions.put3x3Matrix
-import io.github.thibaultbee.streampack.internal.utils.extensions.putFixed1616
-import io.github.thibaultbee.streampack.internal.utils.extensions.putFixed88
-import io.github.thibaultbee.streampack.internal.utils.extensions.putInt
+import com.example.core.internal.muxers.mp4.utils.TimeUtils
+import com.example.core.internal.utils.extensions.put3x3Matrix
+import com.example.core.internal.utils.extensions.putFixed1616
+import com.example.core.internal.utils.extensions.putFixed88
+import com.example.core.internal.utils.extensions.putInt
 import java.nio.ByteBuffer
 
 class TrackHeaderBox(

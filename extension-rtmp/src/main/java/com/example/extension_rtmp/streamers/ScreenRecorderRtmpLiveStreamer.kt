@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.ext.rtmp.streamers
+package com.example.extension_rtmp.streamers
 
 import android.app.Service
 import android.content.Context
-import io.github.thibaultbee.streampack.ext.rtmp.internal.endpoints.RtmpProducer
-import io.github.thibaultbee.streampack.internal.muxers.flv.FlvMuxer
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.video.ExtendedVideoTag
-import io.github.thibaultbee.streampack.listeners.OnConnectionListener
-import io.github.thibaultbee.streampack.listeners.OnErrorListener
-import io.github.thibaultbee.streampack.streamers.bases.BaseScreenRecorderStreamer
-import io.github.thibaultbee.streampack.streamers.live.BaseScreenRecorderLiveStreamer
+import com.example.core.internal.muxers.flv.FlvMuxer
+import com.example.core.internal.muxers.flv.tags.video.ExtendedVideoTag
+import com.example.core.listeners.OnConnectionListener
+import com.example.core.listeners.OnErrorListener
+import com.example.core.streamers.bases.BaseScreenRecorderStreamer
+import com.example.core.streamers.live.BaseScreenRecorderLiveStreamer
+import com.example.extension_rtmp.internal.endpoints.RtmpProducer
 
 /**
  * A [BaseScreenRecorderStreamer] that sends microphone and screen frames to a remote RTMP device.

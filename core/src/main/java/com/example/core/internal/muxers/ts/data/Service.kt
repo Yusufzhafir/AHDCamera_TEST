@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.ts.data
+package com.example.core.internal.muxers.ts.data
 
-import io.github.thibaultbee.streampack.internal.muxers.ts.packets.Pmt
+import com.example.core.internal.muxers.ts.packets.Pmt
 
 class Service(
     val info: TsServiceInfo,

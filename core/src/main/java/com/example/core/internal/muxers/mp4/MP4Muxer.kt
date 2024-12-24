@@ -13,28 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.mp4
+package com.example.core.internal.muxers.mp4
 
-import io.github.thibaultbee.streampack.data.Config
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.data.Packet
-import io.github.thibaultbee.streampack.internal.muxers.IMuxer
-import io.github.thibaultbee.streampack.internal.muxers.IMuxerListener
-import io.github.thibaultbee.streampack.internal.muxers.mp4.boxes.FileTypeBox
-import io.github.thibaultbee.streampack.internal.muxers.mp4.boxes.MovieFragmentRandomAccessBox
-import io.github.thibaultbee.streampack.internal.muxers.mp4.boxes.TrackFragmentRandomAccessBox
-import io.github.thibaultbee.streampack.internal.muxers.mp4.models.AbstractMovieBoxFactory
-import io.github.thibaultbee.streampack.internal.muxers.mp4.models.DefaultMP4SegmenterFactory
-import io.github.thibaultbee.streampack.internal.muxers.mp4.models.MP4Segmenter
-import io.github.thibaultbee.streampack.internal.muxers.mp4.models.MP4SegmenterFactory
-import io.github.thibaultbee.streampack.internal.muxers.mp4.models.MovieBoxFactory
-import io.github.thibaultbee.streampack.internal.muxers.mp4.models.MovieFragmentBoxFactory
-import io.github.thibaultbee.streampack.internal.muxers.mp4.models.Segment
-import io.github.thibaultbee.streampack.internal.muxers.mp4.models.Track
-import io.github.thibaultbee.streampack.internal.orientation.ISourceOrientationProvider
-import io.github.thibaultbee.streampack.internal.utils.TimeUtils
-import io.github.thibaultbee.streampack.internal.utils.extensions.isAudio
-import io.github.thibaultbee.streampack.internal.utils.extensions.isVideo
+import com.example.core.data.Config
+import com.example.core.internal.data.Frame
+import com.example.core.internal.data.Packet
+import com.example.core.internal.muxers.IMuxer
+import com.example.core.internal.muxers.IMuxerListener
+import com.example.core.internal.muxers.mp4.boxes.FileTypeBox
+import com.example.core.internal.muxers.mp4.boxes.MovieFragmentRandomAccessBox
+import com.example.core.internal.muxers.mp4.boxes.TrackFragmentRandomAccessBox
+import com.example.core.internal.muxers.mp4.models.AbstractMovieBoxFactory
+import com.example.core.internal.muxers.mp4.models.DefaultMP4SegmenterFactory
+import com.example.core.internal.muxers.mp4.models.MP4Segmenter
+import com.example.core.internal.muxers.mp4.models.MP4SegmenterFactory
+import com.example.core.internal.muxers.mp4.models.MovieBoxFactory
+import com.example.core.internal.muxers.mp4.models.MovieFragmentBoxFactory
+import com.example.core.internal.muxers.mp4.models.Segment
+import com.example.core.internal.muxers.mp4.models.Track
+import com.example.core.internal.orientation.ISourceOrientationProvider
+import com.example.core.internal.utils.TimeUtils
+import com.example.core.internal.utils.extensions.isAudio
+import com.example.core.internal.utils.extensions.isVideo
 import java.nio.ByteBuffer
 
 class MP4Muxer(

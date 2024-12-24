@@ -1,8 +1,8 @@
-package io.github.thibaultbee.streampack.internal.muxers.ts.utils.av
+package com.example.core.internal.muxers.ts.utils.av
 
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.ByteBufferWriter
-import io.github.thibaultbee.streampack.internal.utils.extensions.put
-import io.github.thibaultbee.streampack.internal.utils.extensions.shl
+import com.example.core.internal.utils.av.buffer.ByteBufferWriter
+import com.example.core.internal.utils.extensions.put
+import com.example.core.internal.utils.extensions.shl
 import java.nio.ByteBuffer
 import kotlin.experimental.and
 import kotlin.math.min

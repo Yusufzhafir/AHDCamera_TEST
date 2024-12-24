@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.sources.camera
+package com.example.core.internal.sources.camera
 
 import android.Manifest
 import android.content.Context
@@ -25,9 +25,9 @@ import android.os.Build
 import android.util.Range
 import android.view.Surface
 import androidx.annotation.RequiresPermission
-import io.github.thibaultbee.streampack.error.CameraError
-import io.github.thibaultbee.streampack.logger.Logger
-import io.github.thibaultbee.streampack.utils.getCameraFpsList
+import com.example.core.error.CameraError
+import com.example.core.logger.Logger
+import com.example.core.utils.getCameraFpsList
 import kotlinx.coroutines.*
 import java.security.InvalidParameterException
 import kotlin.coroutines.resume

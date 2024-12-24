@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.streamers.bases
+package com.example.core.streamers.bases
 
 import android.content.Context
-import io.github.thibaultbee.streampack.internal.endpoints.IEndpoint
-import io.github.thibaultbee.streampack.internal.muxers.IMuxer
-import io.github.thibaultbee.streampack.internal.sources.AudioSource
-import io.github.thibaultbee.streampack.listeners.OnErrorListener
+import com.example.core.internal.endpoints.IEndpoint
+import com.example.core.internal.muxers.IMuxer
+import com.example.core.internal.sources.AudioSource
+import com.example.core.listeners.OnErrorListener
 
 /**
  * A [BaseStreamer] that sends only microphone frames.

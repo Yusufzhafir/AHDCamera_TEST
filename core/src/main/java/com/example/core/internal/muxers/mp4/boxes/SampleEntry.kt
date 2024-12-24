@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.mp4.boxes
+package com.example.core.internal.muxers.mp4.boxes
 
 import android.util.Size
-import io.github.thibaultbee.streampack.internal.utils.extensions.put
-import io.github.thibaultbee.streampack.internal.utils.extensions.putFixed1616
-import io.github.thibaultbee.streampack.internal.utils.extensions.putShort
-import io.github.thibaultbee.streampack.internal.utils.extensions.putString
+import com.example.core.internal.utils.extensions.put
+import com.example.core.internal.utils.extensions.putFixed1616
+import com.example.core.internal.utils.extensions.putShort
+import com.example.core.internal.utils.extensions.putString
 import java.nio.ByteBuffer
 
 sealed class SampleEntry(type: String, private val dataReferenceId: Short, val version: Int = 0) :

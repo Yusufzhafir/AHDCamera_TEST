@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.video.hevc
+package com.example.core.internal.utils.av.video.hevc
 
 enum class HEVCProfile(val value: Short) {
     MAIN(1),
@@ -30,6 +30,6 @@ enum class HEVCProfile(val value: Short) {
 
     companion object {
         fun entryOf(profileIdc: Short) =
-            entries.first { it.value == profileIdc }
+            values().first { it.value == profileIdc }
     }
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers
+package com.example.core.internal.muxers
 
 interface IMuxerHelper {
     val audio: IAudioMuxerHelper

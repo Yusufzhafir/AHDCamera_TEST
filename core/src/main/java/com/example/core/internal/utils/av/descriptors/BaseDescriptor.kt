@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.descriptors
+package com.example.core.internal.utils.av.descriptors
 
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.ByteBufferWriter
+import com.example.core.internal.utils.av.buffer.ByteBufferWriter
 
 abstract class BaseDescriptor(private val tag: Tags, private val sizeOfInstance: Int) :
     ByteBufferWriter() {

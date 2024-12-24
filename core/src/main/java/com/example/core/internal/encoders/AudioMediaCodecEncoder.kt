@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.encoders
+package com.example.core.internal.encoders
 
-import io.github.thibaultbee.streampack.data.AudioConfig
-import io.github.thibaultbee.streampack.listeners.OnErrorListener
+import com.example.core.data.AudioConfig
+import com.example.core.listeners.OnErrorListener
 
 
 class AudioMediaCodecEncoder(

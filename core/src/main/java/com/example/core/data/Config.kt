@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.data
+package com.example.core.data
 
 import android.media.MediaFormat
-import io.github.thibaultbee.streampack.internal.encoders.MediaCodecHelper
-import io.github.thibaultbee.streampack.streamers.bases.BaseStreamer
+import com.example.core.internal.encoders.MediaCodecHelper
+import com.example.core.streamers.bases.BaseStreamer
 
 /**
  * Base configuration class.

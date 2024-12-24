@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.sources
+package com.example.core.internal.sources
 
 import android.view.Surface
-import io.github.thibaultbee.streampack.data.VideoConfig
-import io.github.thibaultbee.streampack.internal.interfaces.Configurable
-import io.github.thibaultbee.streampack.internal.interfaces.Releaseable
-import io.github.thibaultbee.streampack.internal.interfaces.Streamable
+import com.example.core.data.VideoConfig
+import com.example.core.internal.interfaces.Configurable
+import com.example.core.internal.interfaces.Releaseable
+import com.example.core.internal.interfaces.Streamable
 
 interface ISurfaceSource : Streamable, Configurable<VideoConfig>, Releaseable {
     /**

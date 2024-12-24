@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.audio
+package com.example.core.internal.utils.av.audio
 
 enum class SamplingFrequencyIndex(val value: Int) {
     F_96000HZ(0),
@@ -49,7 +49,7 @@ enum class SamplingFrequencyIndex(val value: Int) {
     }
 
     companion object {
-        fun fromValue(value: Int) = entries.first { it.value == value }
+        fun fromValue(value: Int) = values().first { it.value == value }
 
         fun fromSampleRate(sampleRate: Int) = when (sampleRate) {
             96_000 -> F_96000HZ

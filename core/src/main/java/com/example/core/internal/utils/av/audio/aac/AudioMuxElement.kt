@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.audio.aac
+package com.example.core.internal.utils.av.audio.aac
 
-import io.github.thibaultbee.streampack.internal.utils.av.audio.AudioSpecificConfig
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.BitBuffer
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.BitBufferWriter
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.ByteBufferWriter
+import com.example.core.internal.utils.av.audio.AudioSpecificConfig
+import com.example.core.internal.utils.av.buffer.BitBuffer
+import com.example.core.internal.utils.av.buffer.BitBufferWriter
+import com.example.core.internal.utils.av.buffer.ByteBufferWriter
 import java.nio.ByteBuffer
 
 class AudioMuxElement(

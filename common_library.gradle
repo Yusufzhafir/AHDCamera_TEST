@@ -1,12 +1,8 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'org.jetbrains.dokka'
-
 android {
     defaultConfig {
-        minSdk project.minSdk
-        targetSdk project.targetSdk
-        compileSdk project.compileSdk
+        minSdk 24
+        targetSdk 34
+        compileSdk 34
 
         consumerProguardFiles 'proguard-rules.txt'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'

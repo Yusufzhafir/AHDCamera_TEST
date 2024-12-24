@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.audio.aac.config
+package com.example.core.internal.utils.av.audio.aac.config
 
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.BitBuffer
-import io.github.thibaultbee.streampack.internal.utils.av.audio.AudioObjectType
-import io.github.thibaultbee.streampack.internal.utils.av.audio.ChannelConfiguration
-import io.github.thibaultbee.streampack.internal.utils.av.audio.aac.ProgramConfigElement
+import com.example.core.internal.utils.av.buffer.BitBuffer
+import com.example.core.internal.utils.av.audio.AudioObjectType
+import com.example.core.internal.utils.av.audio.ChannelConfiguration
+import com.example.core.internal.utils.av.audio.aac.ProgramConfigElement
 
 data class GASpecificConfig(
     val audioObjectType: AudioObjectType,

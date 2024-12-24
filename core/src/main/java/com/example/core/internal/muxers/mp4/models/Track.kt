@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.mp4.models
+package com.example.core.internal.muxers.mp4.models
 
-import io.github.thibaultbee.streampack.data.Config
-import io.github.thibaultbee.streampack.internal.utils.TimeUtils
+import com.example.core.data.Config
+import com.example.core.internal.utils.TimeUtils
 
 class Track(
     val id: Int,

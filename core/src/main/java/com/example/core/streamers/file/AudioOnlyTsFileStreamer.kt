@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.streamers.file
+package com.example.core.streamers.file
 
 import android.content.Context
-import io.github.thibaultbee.streampack.internal.muxers.ts.TSMuxer
-import io.github.thibaultbee.streampack.internal.muxers.ts.data.TsServiceInfo
-import io.github.thibaultbee.streampack.internal.utils.extensions.defaultTsServiceInfo
-import io.github.thibaultbee.streampack.listeners.OnErrorListener
+import com.example.core.internal.muxers.ts.TSMuxer
+import com.example.core.internal.muxers.ts.data.TsServiceInfo
+import com.example.core.internal.utils.extensions.defaultTsServiceInfo
+import com.example.core.listeners.OnErrorListener
 import java.io.File
 
 /**

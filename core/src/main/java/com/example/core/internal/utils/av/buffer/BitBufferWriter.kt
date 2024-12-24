@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.buffer
+package com.example.core.internal.utils.av.buffer
 
 import java.nio.ByteBuffer
 

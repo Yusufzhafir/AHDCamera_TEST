@@ -1,4 +1,4 @@
-package io.github.thibaultbee.streampack.logger
+package com.example.core.logger
 
 object Logger : ILogger {
     /**

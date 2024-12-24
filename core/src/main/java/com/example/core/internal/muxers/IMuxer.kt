@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers
+package com.example.core.internal.muxers
 
-import io.github.thibaultbee.streampack.data.Config
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.interfaces.Releaseable
-import io.github.thibaultbee.streampack.internal.interfaces.Streamable
-import io.github.thibaultbee.streampack.internal.orientation.ISourceOrientationProvider
+import com.example.core.data.Config
+import com.example.core.internal.data.Frame
+import com.example.core.internal.interfaces.Releaseable
+import com.example.core.internal.interfaces.Streamable
+import com.example.core.internal.orientation.ISourceOrientationProvider
 
 interface IMuxer : Streamable, Releaseable {
     val helper: IMuxerHelper

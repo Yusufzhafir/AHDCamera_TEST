@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.sources
+package com.example.core.internal.sources
 
-import io.github.thibaultbee.streampack.data.VideoConfig
-import io.github.thibaultbee.streampack.internal.orientation.ISourceOrientationProvider
+import com.example.core.data.VideoConfig
+import com.example.core.internal.orientation.ISourceOrientationProvider
 
 interface IVideoSource : IFrameSource<VideoConfig>, ISurfaceSource {
     /**

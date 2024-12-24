@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.streamers.settings
+package com.example.core.streamers.settings
 
-import io.github.thibaultbee.streampack.internal.encoders.AudioMediaCodecEncoder
-import io.github.thibaultbee.streampack.internal.encoders.VideoMediaCodecEncoder
-import io.github.thibaultbee.streampack.internal.sources.IAudioSource
-import io.github.thibaultbee.streampack.streamers.interfaces.settings.IAudioSettings
-import io.github.thibaultbee.streampack.streamers.interfaces.settings.IBaseStreamerSettings
-import io.github.thibaultbee.streampack.streamers.interfaces.settings.IVideoSettings
+import com.example.core.internal.encoders.AudioMediaCodecEncoder
+import com.example.core.internal.encoders.VideoMediaCodecEncoder
+import com.example.core.internal.sources.IAudioSource
+import com.example.core.streamers.interfaces.settings.IAudioSettings
+import com.example.core.streamers.interfaces.settings.IBaseStreamerSettings
+import com.example.core.streamers.interfaces.settings.IVideoSettings
 
 open class BaseStreamerSettings(
     override val audio: BaseStreamerAudioSettings,

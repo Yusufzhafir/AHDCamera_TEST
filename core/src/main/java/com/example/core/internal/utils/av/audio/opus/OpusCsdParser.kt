@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.audio.opus
+package com.example.core.internal.utils.av.audio.opus
 
-import io.github.thibaultbee.streampack.internal.utils.extensions.getLong
-import io.github.thibaultbee.streampack.internal.utils.extensions.getString
-import io.github.thibaultbee.streampack.internal.utils.extensions.startsWith
+import com.example.core.internal.utils.extensions.getLong
+import com.example.core.internal.utils.extensions.getString
+import com.example.core.internal.utils.extensions.startsWith
 import java.nio.ByteBuffer
 
 class OpusCsdParser {

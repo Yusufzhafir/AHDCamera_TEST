@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.mp4.boxes
+package com.example.core.internal.muxers.mp4.boxes
 
-import io.github.thibaultbee.streampack.internal.muxers.mp4.models.SampleFlags
-import io.github.thibaultbee.streampack.internal.muxers.mp4.models.putInt
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.ByteBufferWriter
+import com.example.core.internal.muxers.mp4.models.SampleFlags
+import com.example.core.internal.muxers.mp4.models.putInt
+import com.example.core.internal.utils.av.buffer.ByteBufferWriter
 import java.nio.ByteBuffer
 
 class TrackRunBox(

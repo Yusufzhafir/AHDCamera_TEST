@@ -1,8 +1,8 @@
-package io.github.thibaultbee.streampack.internal.muxers.mp4.models
+package com.example.core.internal.muxers.mp4.models
 
-import io.github.thibaultbee.streampack.internal.utils.extensions.put
-import io.github.thibaultbee.streampack.internal.utils.extensions.shl
-import io.github.thibaultbee.streampack.internal.utils.extensions.toInt
+import com.example.core.internal.utils.extensions.put
+import com.example.core.internal.utils.extensions.shl
+import com.example.core.internal.utils.extensions.toInt
 import java.nio.ByteBuffer
 import kotlin.experimental.and
 

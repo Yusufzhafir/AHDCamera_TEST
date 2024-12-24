@@ -13,21 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.flv.tags
+package com.example.core.internal.muxers.flv.tags
 
 import android.media.MediaFormat
-import io.github.thibaultbee.streampack.data.AudioConfig
-import io.github.thibaultbee.streampack.data.Config
-import io.github.thibaultbee.streampack.data.VideoConfig
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.video.PacketType
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.video.VideoTagFactory
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.AVCCBufferWriter
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.ByteBufferWriter
-import io.github.thibaultbee.streampack.internal.utils.av.buffer.PassthroughBufferWriter
-import io.github.thibaultbee.streampack.internal.utils.av.video.avc.AVCDecoderConfigurationRecord
-import io.github.thibaultbee.streampack.internal.utils.av.video.hevc.HEVCDecoderConfigurationRecord
-import io.github.thibaultbee.streampack.internal.utils.av.video.vpx.VPCodecConfigurationRecord
+import com.example.core.data.AudioConfig
+import com.example.core.data.Config
+import com.example.core.data.VideoConfig
+import com.example.core.internal.data.Frame
+import com.example.core.internal.muxers.flv.tags.video.PacketType
+import com.example.core.internal.muxers.flv.tags.video.VideoTagFactory
+import com.example.core.internal.utils.av.buffer.AVCCBufferWriter
+import com.example.core.internal.utils.av.buffer.ByteBufferWriter
+import com.example.core.internal.utils.av.buffer.PassthroughBufferWriter
+import com.example.core.internal.utils.av.video.avc.AVCDecoderConfigurationRecord
+import com.example.core.internal.utils.av.video.hevc.HEVCDecoderConfigurationRecord
+import com.example.core.internal.utils.av.video.vpx.VPCodecConfigurationRecord
 import java.io.IOException
 import java.nio.ByteBuffer
 

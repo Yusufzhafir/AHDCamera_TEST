@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.audio
+package com.example.core.internal.utils.av.audio
 
 import android.media.MediaCodecInfo
 import android.media.MediaFormat
@@ -78,7 +78,7 @@ enum class AudioObjectType(val value: Int) {
 
     companion object {
         fun fromValue(value: Int): AudioObjectType {
-            return entries.first { it.value == value }
+            return values().first { it.value == value }
         }
 
         fun fromProfile(mimeType: String, profile: Int) = when (mimeType) {

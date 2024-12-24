@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package io.github.thibaultbee.streampack.utils
+package com.example.core.utils
 
-import io.github.thibaultbee.streampack.streamers.interfaces.ICameraStreamer
-import io.github.thibaultbee.streampack.streamers.interfaces.IFileStreamer
-import io.github.thibaultbee.streampack.streamers.interfaces.ILiveStreamer
-import io.github.thibaultbee.streampack.streamers.interfaces.IStreamer
+import com.example.core.streamers.interfaces.ICameraStreamer
+import com.example.core.streamers.interfaces.IFileStreamer
+import com.example.core.streamers.interfaces.ILiveStreamer
+import com.example.core.streamers.interfaces.IStreamer
 
 /**
  * Get a streamer if it from generic class or interface

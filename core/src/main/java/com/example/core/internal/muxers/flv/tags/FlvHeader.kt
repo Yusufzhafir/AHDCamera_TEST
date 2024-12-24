@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.flv.tags
+package com.example.core.internal.muxers.flv.tags
 
-import io.github.thibaultbee.streampack.internal.utils.extensions.shl
-import io.github.thibaultbee.streampack.internal.utils.extensions.toByte
+import com.example.core.internal.utils.extensions.shl
+import com.example.core.internal.utils.extensions.toByte
 import java.nio.ByteBuffer
 import kotlin.experimental.or
 

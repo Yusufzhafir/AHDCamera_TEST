@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.buffer
+package com.example.core.internal.utils.av.buffer
 
-import io.github.thibaultbee.streampack.internal.utils.extensions.shr
+import com.example.core.internal.utils.extensions.shr
 import java.nio.ByteBuffer
 
 class ByteBufferBitReader(var buffer: ByteBuffer) {

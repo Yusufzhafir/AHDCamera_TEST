@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.ts.descriptors
+package com.example.core.internal.muxers.ts.descriptors
 
-import io.github.thibaultbee.streampack.internal.muxers.ts.data.ITSElement
-import io.github.thibaultbee.streampack.internal.muxers.ts.utils.TSConst
-import io.github.thibaultbee.streampack.internal.utils.extensions.put
-import io.github.thibaultbee.streampack.internal.utils.extensions.putShort
-import io.github.thibaultbee.streampack.internal.utils.extensions.shl
+import com.example.core.internal.muxers.ts.data.ITSElement
+import com.example.core.internal.muxers.ts.utils.TSConst
+import com.example.core.internal.utils.extensions.put
+import com.example.core.internal.utils.extensions.putShort
+import com.example.core.internal.utils.extensions.shl
 import java.nio.ByteBuffer
 import kotlin.math.pow
 

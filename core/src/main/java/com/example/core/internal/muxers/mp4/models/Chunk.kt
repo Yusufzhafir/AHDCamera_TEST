@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.mp4.models
+package com.example.core.internal.muxers.mp4.models
 
 import android.media.MediaFormat
-import io.github.thibaultbee.streampack.internal.data.Frame
-import io.github.thibaultbee.streampack.internal.utils.extensions.unzip
+import com.example.core.internal.data.Frame
+import com.example.core.internal.utils.extensions.unzip
 import java.nio.ByteBuffer
 
 /**

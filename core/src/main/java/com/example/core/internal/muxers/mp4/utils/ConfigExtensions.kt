@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.mp4.utils
+package com.example.core.internal.muxers.mp4.utils
 
-import io.github.thibaultbee.streampack.data.AudioConfig
-import io.github.thibaultbee.streampack.data.Config
-import io.github.thibaultbee.streampack.data.VideoConfig
-import io.github.thibaultbee.streampack.internal.muxers.mp4.boxes.HandlerBox
-import io.github.thibaultbee.streampack.internal.muxers.mp4.boxes.SoundMediaHeaderBox
-import io.github.thibaultbee.streampack.internal.muxers.mp4.boxes.TypeMediaHeaderBox
-import io.github.thibaultbee.streampack.internal.muxers.mp4.boxes.VideoMediaHeaderBox
+import com.example.core.data.AudioConfig
+import com.example.core.data.Config
+import com.example.core.data.VideoConfig
+import com.example.core.internal.muxers.mp4.boxes.HandlerBox
+import com.example.core.internal.muxers.mp4.boxes.SoundMediaHeaderBox
+import com.example.core.internal.muxers.mp4.boxes.TypeMediaHeaderBox
+import com.example.core.internal.muxers.mp4.boxes.VideoMediaHeaderBox
 
 fun Config.createTypeMediaHeaderBox(): TypeMediaHeaderBox {
     return when (this) {

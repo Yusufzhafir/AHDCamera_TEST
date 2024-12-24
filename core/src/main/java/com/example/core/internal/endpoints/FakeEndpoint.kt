@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.endpoints
+package com.example.core.internal.endpoints
 
-import io.github.thibaultbee.streampack.internal.data.Packet
-import io.github.thibaultbee.streampack.logger.Logger
+import com.example.core.internal.data.Packet
+import com.example.core.logger.Logger
 
 /**
  * A fake endpoint for test purpose.

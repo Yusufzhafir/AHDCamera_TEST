@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.extensions
+package com.example.core.internal.utils.extensions
 
 fun <T> Iterable<List<T>>.unzip(): List<List<T>> {
     val expectedSize = this.first().size

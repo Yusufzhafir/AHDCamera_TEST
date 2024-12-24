@@ -1,6 +1,5 @@
 package com.quectel.multicamera.dialog;
 
-import android.ai.SystemAlg;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -25,8 +24,6 @@ import java.io.IOException;
 
 public class ADASConfigDialog extends AlertDialog {
     private PreviewParams pParams ;
-
-    private static String mPath, mDMSPath;
 
     private static final int ABORM_INTERVAL_TIME_FRAME = 24;
 
@@ -61,8 +58,6 @@ public class ADASConfigDialog extends AlertDialog {
         mHandler = handler;
         this.width = width;
         this.height = height;
-        mPath = SystemAlg.getADASWarnParaFilePath();
-        mDMSPath = SystemAlg.getDMSConfigFilePath();
     }
 
     @Override
@@ -107,115 +102,115 @@ public class ADASConfigDialog extends AlertDialog {
         gpio_switch.setEnabled(!pParams.getADASEnable());
         second_warn_open_speed_edit.setText(pParams.getSecondWarnOpenSpeed()+"");
         try {
-            String value = ConfigMgrUtils.readCfgValue(mPath, LDW_NAME, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                dep_switch.setChecked(value.equals("true"));
-                dep_switch.setEnabled(!pParams.getADASEnable());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            value = ConfigMgrUtils.readCfgValue(mPath, FCW_NAME, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                front_col_switch.setChecked(value.equals("true"));
-                front_col_switch.setEnabled(!pParams.getADASEnable());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            value = ConfigMgrUtils.readCfgValue(mPath, HMW_NAME, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                distance_switch.setChecked(value.equals("true"));
-                distance_switch.setEnabled(!pParams.getADASEnable());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            value = ConfigMgrUtils.readCfgValue(mPath, LDW_VEL, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                dep_open_speed_edit.setText(value);
-                dep_open_speed_edit.setEnabled(!pParams.getADASEnable() && !dep_switch.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            value = ConfigMgrUtils.readCfgValue(mPath, FCW_VEL, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                front_col_open_speed_edit.setText(value);
-                front_col_open_speed_edit.setEnabled(!pParams.getADASEnable() && !front_col_switch.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            value = ConfigMgrUtils.readCfgValue(mPath, HMW_VEL, "null");
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                distance_open_speed_edit.setText(value);
-                distance_open_speed_edit.setEnabled(!pParams.getADASEnable() && !distance_switch.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            value = ConfigMgrUtils.readCfgValue(mPath, HMW_TIME, "null");
-//            System.out.println("zyz --> "+HMW_TIME+" --> "+value);
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                hmw_open_thres_times_edit.setText(value);
-                hmw_open_thres_times_edit.setEnabled(!pParams.getADASEnable());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            value = ConfigMgrUtils.readCfgValue(mPath, FCW_DELAT2, "null");
-//            System.out.println("zyz --> "+FCW_DELAT2+" --> "+value);
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                ttc_thres_times_edit.setText(value);
-                ttc_thres_times_edit.setEnabled(!pParams.getADASEnable());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            value = ConfigMgrUtils.readCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, HMW_TYPE, "null");
-//            System.out.println("zyz --> "+HMW_TYPE+" --> "+value);
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                int sec = Integer.parseInt(value);
-                hmw_warn_interval_times_edit.setText((sec/ABORM_INTERVAL_TIME_FRAME)+"");
-                hmw_warn_interval_times_edit.setEnabled(!pParams.getADASEnable());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            value = ConfigMgrUtils.readCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, FCW_TYPE, "null");
-//            System.out.println("zyz --> "+FCW_TYPE+" --> "+value);
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                int sec = Integer.parseInt(value);
-                fcw_warn_interval_times_edit.setText((sec/ABORM_INTERVAL_TIME_FRAME)+"");
-                fcw_warn_interval_times_edit.setEnabled(!pParams.getADASEnable());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
-
-            value = ConfigMgrUtils.readCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, LDW_LEFT_TYPE, "null");
-//            System.out.println("zyz --> "+FCW_TYPE+" --> "+value);
-            if ((!value.equals("null"))&& (!value.equals(""))) {
-                int sec = Integer.parseInt(value);
-                dep_warn_interval_times_edit.setText((sec/ABORM_INTERVAL_TIME_FRAME)+"");
-                dep_warn_interval_times_edit.setEnabled(!pParams.getADASEnable() && !dep_switch.isChecked());
-            }else {
-                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
-                this.dismiss();
-            }
+//            String value = ConfigMgrUtils.readCfgValue(mPath, LDW_NAME, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                dep_switch.setChecked(value.equals("true"));
+//                dep_switch.setEnabled(!pParams.getADASEnable());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            value = ConfigMgrUtils.readCfgValue(mPath, FCW_NAME, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                front_col_switch.setChecked(value.equals("true"));
+//                front_col_switch.setEnabled(!pParams.getADASEnable());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            value = ConfigMgrUtils.readCfgValue(mPath, HMW_NAME, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                distance_switch.setChecked(value.equals("true"));
+//                distance_switch.setEnabled(!pParams.getADASEnable());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            value = ConfigMgrUtils.readCfgValue(mPath, LDW_VEL, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                dep_open_speed_edit.setText(value);
+//                dep_open_speed_edit.setEnabled(!pParams.getADASEnable() && !dep_switch.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            value = ConfigMgrUtils.readCfgValue(mPath, FCW_VEL, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                front_col_open_speed_edit.setText(value);
+//                front_col_open_speed_edit.setEnabled(!pParams.getADASEnable() && !front_col_switch.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            value = ConfigMgrUtils.readCfgValue(mPath, HMW_VEL, "null");
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                distance_open_speed_edit.setText(value);
+//                distance_open_speed_edit.setEnabled(!pParams.getADASEnable() && !distance_switch.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            value = ConfigMgrUtils.readCfgValue(mPath, HMW_TIME, "null");
+////            System.out.println("zyz --> "+HMW_TIME+" --> "+value);
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                hmw_open_thres_times_edit.setText(value);
+//                hmw_open_thres_times_edit.setEnabled(!pParams.getADASEnable());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            value = ConfigMgrUtils.readCfgValue(mPath, FCW_DELAT2, "null");
+////            System.out.println("zyz --> "+FCW_DELAT2+" --> "+value);
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                ttc_thres_times_edit.setText(value);
+//                ttc_thres_times_edit.setEnabled(!pParams.getADASEnable());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            value = ConfigMgrUtils.readCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, HMW_TYPE, "null");
+////            System.out.println("zyz --> "+HMW_TYPE+" --> "+value);
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                int sec = Integer.parseInt(value);
+//                hmw_warn_interval_times_edit.setText((sec/ABORM_INTERVAL_TIME_FRAME)+"");
+//                hmw_warn_interval_times_edit.setEnabled(!pParams.getADASEnable());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            value = ConfigMgrUtils.readCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, FCW_TYPE, "null");
+////            System.out.println("zyz --> "+FCW_TYPE+" --> "+value);
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                int sec = Integer.parseInt(value);
+//                fcw_warn_interval_times_edit.setText((sec/ABORM_INTERVAL_TIME_FRAME)+"");
+//                fcw_warn_interval_times_edit.setEnabled(!pParams.getADASEnable());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
+//
+//            value = ConfigMgrUtils.readCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, LDW_LEFT_TYPE, "null");
+////            System.out.println("zyz --> "+FCW_TYPE+" --> "+value);
+//            if ((!value.equals("null"))&& (!value.equals(""))) {
+//                int sec = Integer.parseInt(value);
+//                dep_warn_interval_times_edit.setText((sec/ABORM_INTERVAL_TIME_FRAME)+"");
+//                dep_warn_interval_times_edit.setEnabled(!pParams.getADASEnable() && !dep_switch.isChecked());
+//            }else {
+//                Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
+//                this.dismiss();
+//            }
 
 //            System.out.println("zyz1 --> LdwOn value --> "+value);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(mContext, mContext.getString(R.string.read_conf_err), Toast.LENGTH_SHORT).show();
             this.dismiss();
@@ -346,26 +341,26 @@ public class ADASConfigDialog extends AlertDialog {
                 }
 
                 try {
-                    ConfigMgrUtils.writeCfgValue(mPath, LDW_NAME, dep_switch.isChecked()?"true":"false");
-                    ConfigMgrUtils.writeCfgValue(mPath, FCW_NAME, front_col_switch.isChecked()?"true":"false");
-                    ConfigMgrUtils.writeCfgValue(mPath, HMW_NAME, distance_switch.isChecked()?"true":"false");
-
-                    ConfigMgrUtils.writeCfgValue(mPath, LDW_VEL, dep_open_speed_edit.getText().toString());
-                    ConfigMgrUtils.writeCfgValue(mPath, FCW_VEL, front_col_open_speed_edit.getText().toString());
-                    ConfigMgrUtils.writeCfgValue(mPath, HMW_VEL, distance_open_speed_edit.getText().toString());
-
-                    ConfigMgrUtils.writeCfgValue(mPath, HMW_TIME, hmw_open_thres_times_edit.getText().toString());
-                    ConfigMgrUtils.writeCfgValue(mPath, FCW_DELAT2, ttc_thres_times_edit.getText().toString());
-
-                    int sec = Integer.parseInt(hmw_warn_interval_times_edit.getText().toString());
-                    ConfigMgrUtils.writeCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, HMW_TYPE, (sec*ABORM_INTERVAL_TIME_FRAME)+"");
-                    sec = Integer.parseInt(fcw_warn_interval_times_edit.getText().toString());
-                    ConfigMgrUtils.writeCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, FCW_TYPE, (sec*ABORM_INTERVAL_TIME_FRAME)+"");
-
-                    sec = Integer.parseInt(dep_warn_interval_times_edit.getText().toString());
-                    ConfigMgrUtils.writeCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, LDW_LEFT_TYPE, (sec*ABORM_INTERVAL_TIME_FRAME)+"");
-                    ConfigMgrUtils.writeCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, LDW_RIGHT_TYPE, (sec*ABORM_INTERVAL_TIME_FRAME)+"");
-                } catch (IOException e) {
+//                    ConfigMgrUtils.writeCfgValue(mPath, LDW_NAME, dep_switch.isChecked()?"true":"false");
+//                    ConfigMgrUtils.writeCfgValue(mPath, FCW_NAME, front_col_switch.isChecked()?"true":"false");
+//                    ConfigMgrUtils.writeCfgValue(mPath, HMW_NAME, distance_switch.isChecked()?"true":"false");
+//
+//                    ConfigMgrUtils.writeCfgValue(mPath, LDW_VEL, dep_open_speed_edit.getText().toString());
+//                    ConfigMgrUtils.writeCfgValue(mPath, FCW_VEL, front_col_open_speed_edit.getText().toString());
+//                    ConfigMgrUtils.writeCfgValue(mPath, HMW_VEL, distance_open_speed_edit.getText().toString());
+//
+//                    ConfigMgrUtils.writeCfgValue(mPath, HMW_TIME, hmw_open_thres_times_edit.getText().toString());
+//                    ConfigMgrUtils.writeCfgValue(mPath, FCW_DELAT2, ttc_thres_times_edit.getText().toString());
+//
+//                    int sec = Integer.parseInt(hmw_warn_interval_times_edit.getText().toString());
+//                    ConfigMgrUtils.writeCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, HMW_TYPE, (sec*ABORM_INTERVAL_TIME_FRAME)+"");
+//                    sec = Integer.parseInt(fcw_warn_interval_times_edit.getText().toString());
+//                    ConfigMgrUtils.writeCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, FCW_TYPE, (sec*ABORM_INTERVAL_TIME_FRAME)+"");
+//
+//                    sec = Integer.parseInt(dep_warn_interval_times_edit.getText().toString());
+//                    ConfigMgrUtils.writeCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, LDW_LEFT_TYPE, (sec*ABORM_INTERVAL_TIME_FRAME)+"");
+//                    ConfigMgrUtils.writeCfgValue(mDMSPath, DSM_ABORM_INTER_FRAME, LDW_RIGHT_TYPE, (sec*ABORM_INTERVAL_TIME_FRAME)+"");
+                } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(mContext, mContext.getString(R.string.write_conf_err), Toast.LENGTH_SHORT).show();
                     return;

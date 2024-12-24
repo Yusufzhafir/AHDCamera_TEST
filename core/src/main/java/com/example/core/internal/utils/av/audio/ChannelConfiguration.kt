@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.utils.av.audio
+package com.example.core.internal.utils.av.audio
 
 import android.media.AudioFormat
 import java.io.IOException
@@ -29,7 +29,7 @@ enum class ChannelConfiguration(val value: Short) {
     CHANNEL_8(7);
 
     companion object {
-        fun fromValue(value: Short) = entries.first { it.value == value }
+        fun fromValue(value: Short) = values().first { it.value == value }
 
         fun fromChannelConfig(channelConfig: Int) = when (channelConfig) {
             AudioFormat.CHANNEL_IN_MONO -> CHANNEL_1

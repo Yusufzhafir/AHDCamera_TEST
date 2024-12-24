@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.internal.muxers.flv.tags
+package com.example.core.internal.muxers.flv.tags
 
-import io.github.thibaultbee.streampack.data.AudioConfig
-import io.github.thibaultbee.streampack.data.Config
-import io.github.thibaultbee.streampack.data.VideoConfig
-import io.github.thibaultbee.streampack.internal.orientation.ISourceOrientationProvider
-import io.github.thibaultbee.streampack.internal.muxers.flv.amf.containers.AmfContainer
-import io.github.thibaultbee.streampack.internal.muxers.flv.amf.containers.AmfEcmaArray
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.video.CodecID
-import io.github.thibaultbee.streampack.internal.muxers.flv.tags.video.ExtendedVideoTag
-import io.github.thibaultbee.streampack.internal.utils.av.FourCCs
-import io.github.thibaultbee.streampack.internal.utils.extensions.numOfBits
-import io.github.thibaultbee.streampack.logger.Logger
+import com.example.core.data.AudioConfig
+import com.example.core.data.Config
+import com.example.core.data.VideoConfig
+import com.example.core.internal.orientation.ISourceOrientationProvider
+import com.example.core.internal.muxers.flv.amf.containers.AmfContainer
+import com.example.core.internal.muxers.flv.amf.containers.AmfEcmaArray
+import com.example.core.internal.muxers.flv.tags.video.CodecID
+import com.example.core.internal.muxers.flv.tags.video.ExtendedVideoTag
+import com.example.core.internal.utils.av.FourCCs
+import com.example.core.internal.utils.extensions.numOfBits
+import com.example.core.logger.Logger
 import java.io.IOException
 import java.nio.ByteBuffer
 

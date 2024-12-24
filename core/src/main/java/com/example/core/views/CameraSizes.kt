@@ -14,11 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.views
+package com.example.core.views
 
 import android.hardware.camera2.CameraCharacteristics
 import android.util.Size
-import io.github.thibaultbee.streampack.internal.utils.extensions.closestTo
+import com.example.core.internal.utils.extensions.closestTo
 
 /**
  * Returns the largest available PREVIEW size. For more information, see:

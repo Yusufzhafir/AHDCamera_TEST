@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.streamers.helpers
+package com.example.core.streamers.helpers
 
 import android.media.AudioFormat
 import android.media.MediaCodecInfo.CodecCapabilities.FEATURE_HdrEditing
@@ -39,15 +39,15 @@ import android.media.MediaCodecInfo.CodecProfileLevel.VP9Profile2HDR10Plus
 import android.media.MediaFormat
 import android.os.Build
 import android.util.Range
-import io.github.thibaultbee.streampack.internal.encoders.MediaCodecHelper
-import io.github.thibaultbee.streampack.internal.muxers.IAudioMuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.IMuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.IVideoMuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.flv.FlvMuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.mp4.MP4MuxerHelper
-import io.github.thibaultbee.streampack.internal.muxers.ts.TSMuxerHelper
-import io.github.thibaultbee.streampack.internal.utils.av.video.DynamicRangeProfile
-import io.github.thibaultbee.streampack.streamers.bases.BaseStreamer
+import com.example.core.internal.encoders.MediaCodecHelper
+import com.example.core.internal.muxers.IAudioMuxerHelper
+import com.example.core.internal.muxers.IMuxerHelper
+import com.example.core.internal.muxers.IVideoMuxerHelper
+import com.example.core.internal.muxers.flv.FlvMuxerHelper
+import com.example.core.internal.muxers.mp4.MP4MuxerHelper
+import com.example.core.internal.muxers.ts.TSMuxerHelper
+import com.example.core.internal.utils.av.video.DynamicRangeProfile
+import com.example.core.streamers.bases.BaseStreamer
 import java.security.InvalidParameterException
 
 /**

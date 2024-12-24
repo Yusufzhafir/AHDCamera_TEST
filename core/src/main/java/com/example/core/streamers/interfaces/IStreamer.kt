@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.thibaultbee.streampack.streamers.interfaces
+package com.example.core.streamers.interfaces
 
 import android.Manifest
 import androidx.annotation.RequiresPermission
-import io.github.thibaultbee.streampack.data.AudioConfig
-import io.github.thibaultbee.streampack.data.VideoConfig
-import io.github.thibaultbee.streampack.error.StreamPackError
-import io.github.thibaultbee.streampack.listeners.OnErrorListener
-import io.github.thibaultbee.streampack.streamers.helpers.IConfigurationHelper
-import io.github.thibaultbee.streampack.streamers.interfaces.settings.IBaseStreamerSettings
+import com.example.core.data.AudioConfig
+import com.example.core.data.VideoConfig
+import com.example.core.error.StreamPackError
+import com.example.core.listeners.OnErrorListener
+import com.example.core.streamers.helpers.IConfigurationHelper
+import com.example.core.streamers.interfaces.settings.IBaseStreamerSettings
 
 interface IStreamer {
     /**

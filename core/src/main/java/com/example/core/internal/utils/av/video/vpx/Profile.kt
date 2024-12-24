@@ -1,4 +1,4 @@
-package io.github.thibaultbee.streampack.internal.utils.av.video.vpx
+package com.example.core.internal.utils.av.video.vpx
 
 import android.media.MediaCodecInfo
 
@@ -9,7 +9,7 @@ enum class Profile(val value: Int) {
     PROFILE_3(3);
 
     companion object {
-        fun fromValue(value: Int) = entries.first { it.value == value }
+        fun fromValue(value: Int) = values().first { it.value == value }
 
         fun fromMediaFormat(mediaCodecProfile: Int) = when (mediaCodecProfile) {
             MediaCodecInfo.CodecProfileLevel.VP9Profile0 -> PROFILE_0
