@@ -1002,6 +1002,10 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
             else
                 Toast.makeText(getApplicationContext(), getString(R.string.sdcard_disable), Toast.LENGTH_SHORT).show();
         }
+        initStream();
+    }
+
+    private void initStream(){
         streamer = new ScreenRecorderRtmpLiveStreamer(getApplicationContext(), true, new OnErrorListener() {
             @Override
             public void onError(@NonNull StreamPackError error) {
@@ -1024,20 +1028,13 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
                 toast("connection success");
             }
         });
-
-        Runnable streamRun = new Runnable() {
-            @Override
-            public void run() {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
-                streamer.startStreamFromJava("rtmp:nginx-rtmp.mujak.my.id/live/ahd");
-            }
-        };
-        streamRun.run();
-    }
-
-    private void initStream(){
         VideoConfig videoConfig = new VideoConfig();
         streamer.configure(videoConfig);
+        Runnable streamRun = () -> {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+            streamer.startStreamFromJava("rtmp:nginx-rtmp.mujak.my.id/live/ahd");
+        };
+        streamRun.run();
     }
 
     private void toast(String message) {
