@@ -36,6 +36,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -46,8 +48,10 @@ import com.example.core.error.StreamPackError;
 import com.example.core.internal.encoders.MediaCodecHelper;
 import com.example.core.listeners.OnConnectionListener;
 import com.example.core.listeners.OnErrorListener;
+import com.example.core.streamers.bases.BaseScreenRecorderStreamer;
 import com.example.core.streamers.interfaces.ILiveStreamer;
 import com.example.core.streamers.live.BaseScreenRecorderLiveStreamer;
+import com.example.extension_rtmp.services.ScreenRecorderRtmpLiveService;
 import com.example.extension_rtmp.streamers.ScreenRecorderRtmpLiveStreamer;
 import com.quectel.multicamera.dialog.ADASConfigDialog;
 import com.quectel.multicamera.dialog.CalibrationDialog;
@@ -899,8 +903,53 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
         initStream();
     }
 
+    private ActivityResultLauncher<String> requestAudioPermissionsLauncher;
+    private ActivityResultLauncher<Intent> getContentLauncher;
+
     private void initStream() {
+        // Initialize the audio permissions launcher
+        requestAudioPermissionsLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestPermission(),
+                isGranted -> {
+                    if (!isGranted) {
+                    } else {
+                        Intent screenRecorderIntent = BaseScreenRecorderStreamer.Companion.createScreenRecorderIntent(this);
+                        getContentLauncher.launch(screenRecorderIntent);
+                    }
+                }
+        );
+
+        // Initialize the getContent launcher
+        getContentLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Intent data = result.getData();
+                        ScreenRecorderRtmpLiveService.Companion.launch(
+                                        this,
+                                DemoScreenRecorderRtmpLiveService.class,
+                                true,
+                                streamer -> {
+                                    this.streamer = streamer;
+                                    this.streamer.setActivityResult(result);
+                                    try {
+                                        configureAndStart();
+                                        moveTaskToBack(true);
+                                    } catch (Exception e) {
+                                        Log.e(TAG, "Error while starting streamer", e);
+                                    }
+                                    return null;
+                                },
+                                name -> null
+                        );
+                    }
+                }
+        );
+
+        requestAudioPermissionsLauncher.launch(android.Manifest.permission.RECORD_AUDIO);
         // Initialize streamer with error and connection listeners
+    }
+    private void configureAndStart(){
         streamer = new ScreenRecorderRtmpLiveStreamer(getApplicationContext(), true, new OnErrorListener() {
             @Override
             public void onError(@NonNull StreamPackError error) {
@@ -958,7 +1007,6 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
                 toast("Streaming failed: " + e.getMessage());
             }
         }).start();
-
     }
 
     private void toast(String message) {

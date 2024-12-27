@@ -107,7 +107,7 @@ class ScreenSource(
         require(activityResult != null) { "Activity result must be set!" }
 
         val resultCode = activityResult!!.resultCode
-        val resultData = activityResult!!.data!!
+            val resultData = activityResult!!.data!!
 
         isExplicitelyStopped = false
 
