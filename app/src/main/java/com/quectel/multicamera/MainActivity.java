@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,7 +38,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import com.example.core.data.AudioConfig;
 import com.example.core.data.VideoConfig;
 import com.example.core.error.StreamPackError;
 import com.example.core.internal.encoders.MediaCodecHelper;
@@ -1029,7 +1032,12 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
             }
         });
         VideoConfig videoConfig = new VideoConfig();
+        AudioConfig audioConfig = new AudioConfig();
         streamer.configure(videoConfig);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        streamer.configure(audioConfig);
         Runnable streamRun = () -> {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
             streamer.startStreamFromJava("rtmp://45.32.115.43/live/ahd");
