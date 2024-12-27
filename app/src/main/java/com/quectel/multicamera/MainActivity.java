@@ -46,6 +46,7 @@ import com.example.core.error.StreamPackError;
 import com.example.core.internal.encoders.MediaCodecHelper;
 import com.example.core.listeners.OnConnectionListener;
 import com.example.core.listeners.OnErrorListener;
+import com.example.core.streamers.interfaces.ILiveStreamer;
 import com.example.core.streamers.live.BaseScreenRecorderLiveStreamer;
 import com.example.extension_rtmp.streamers.ScreenRecorderRtmpLiveStreamer;
 import com.quectel.multicamera.dialog.ADASConfigDialog;
@@ -358,116 +359,6 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
             infoStr = "null";
         }
         return infoStr;
-    }
-
-    //算法文件拷贝以及启动算法
-//    private class InitAIOperation extends Thread {
-//        @Override
-//        public void run() {
-//            super.run();
-//            //Start ADAS
-//            final int retValue = SystemAlg.detectInit(new SystemAlg.OnEventChangeListener() {
-//                @Override
-//                public void onEventChanged(int i, int[] ints) {
-//                    Message msg = mHandler.obtainMessage();
-//                    msg.what = i;
-//                    msg.obj = ints;
-//                    mHandler.sendMessage(msg);
-//                }
-//            }, 7);
-//            System.out.println("zyz-->retValue=" + retValue);
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Toast.makeText(MainActivity.this, retValue + "", Toast.LENGTH_LONG).show();
-//                }
-//            });
-//            if (retValue != 0) {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Toast.makeText(getApplicationContext(), getString(R.string.init_detect_err), Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//                return;
-//            }
-//
-//            int ret = SystemAlg.getSignType();
-//            Log.d("qwe", "run: " + ret);
-//            if (ret == 1) {//ADAS
-//                ADAS_ENABLE = true;
-//            } else if (ret == 2) {//BSD
-//                BSD_ENABLE = true;
-//            } else if (ret == 3) {//ADAS+BSD
-//                ADAS_ENABLE = true;
-//                BSD_ENABLE = true;
-//            } else if (ret == 4) {//DMS
-//                DMS_ENABLE = true;
-//            } else if (ret == 5) {//ADAS+DMS
-//                ADAS_ENABLE = true;
-//                DMS_ENABLE = true;
-//            } else if (ret == 6) {//BSD+DMS
-//                BSD_ENABLE = true;
-//                DMS_ENABLE = true;
-//            } else if (ret == 7) {//ADAS+BSD+DMS
-//                ADAS_ENABLE = true;
-//                BSD_ENABLE = true;
-//                DMS_ENABLE = true;
-//            } else {// NULL
-//                ADAS_ENABLE = false;
-//                BSD_ENABLE = false;
-//                DMS_ENABLE = false;
-//            }
-//
-////            ADAS_ENABLE = true;
-////            BSD_ENABLE = true;
-////            DMS_ENABLE = true;
-//
-//            mFaceVerityThread = new FaceVerityThread(pParams.getIdentityCheckInterval());
-//            mFaceVerityThread.start();
-//
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//
-//                    if (!BSD_ENABLE) {
-//                        if (!DMS_ENABLE) {
-//                            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) adas_button.getLayoutParams();
-//                            layoutParams.setMargins(0, 0, 0, change(180));
-//                            adas_button.setLayoutParams(layoutParams);
-//                        } else {
-//                            FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) adas_button.getLayoutParams();
-//                            layoutParams2.setMargins(0, 0, 0, change(225));
-//                            adas_button.setLayoutParams(layoutParams2);
-//
-//                            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) dms_button.getLayoutParams();
-//                            layoutParams.setMargins(0, 0, 0, change(180));
-//                            dms_button.setLayoutParams(layoutParams);
-//                        }
-//                    } else {
-//                        if (!DMS_ENABLE) {
-//                            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) adas_button.getLayoutParams();
-//                            layoutParams.setMargins(0, 0, 0, change(225));
-//                            adas_button.setLayoutParams(layoutParams);
-//                        }
-//                    }
-//
-//
-//                    adas_button.setVisibility(ADAS_ENABLE ? View.VISIBLE : View.GONE);
-//                    dms_button.setVisibility(DMS_ENABLE ? View.VISIBLE : View.GONE);
-//                    bsd_button.setVisibility(BSD_ENABLE ? View.VISIBLE : View.GONE);
-//                    dms_button.setEnabled(true);
-//                    adas_button.setEnabled(true);
-//                    bsd_button.setEnabled(true);
-//                }
-//            });
-//        }
-//    }
-
-    private int change(int dp) {
-        final float scale = getResources().getDisplayMetrics().density;
-        //由30dp转化来的px
-        return (int) (dp * scale + 0.5f);
     }
 
     private class DMSDetectThread extends Thread {
@@ -1008,41 +899,66 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
         initStream();
     }
 
-    private void initStream(){
+    private void initStream() {
+        // Initialize streamer with error and connection listeners
         streamer = new ScreenRecorderRtmpLiveStreamer(getApplicationContext(), true, new OnErrorListener() {
             @Override
             public void onError(@NonNull StreamPackError error) {
-                toast("An Error Occured");
+                Log.e("StreamError", "Error Code: " + error.getClass() + ", Message: " + error.getMessage());
+                toast("An error occurred: " + error.getMessage());
             }
         }, new OnConnectionListener() {
             @Override
             public void onLost(@NonNull String message) {
-                toast("connection lost " + message);
+                Log.e("StreamConnection", "Connection lost: " + message);
+                toast("Connection lost: " + message);
             }
 
             @Override
             public void onFailed(@NonNull String message) {
-                toast("connection failed " + message);
-
+                Log.e("StreamConnection", "Connection failed: " + message);
+                toast("Connection failed: " + message);
             }
 
             @Override
             public void onSuccess() {
-                toast("connection success");
+                Log.d("StreamConnection", "Connection successful");
+                toast("Connection successful");
             }
         });
+
+        // Retrieve device refresh rate to calculate FPS
+        DisplayManager displayManager = (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
+        Display display = displayManager.getDisplay(Display.DEFAULT_DISPLAY);
+        int deviceRefreshRate = (int) display.getRefreshRate();
+        int fps = MediaCodecHelper.Video.INSTANCE.getFramerateRange("video/avc").contains(deviceRefreshRate)
+                ? deviceRefreshRate
+                : 30;
+
+        // Configure video settings
         VideoConfig videoConfig = new VideoConfig();
-        AudioConfig audioConfig = new AudioConfig();
         streamer.configure(videoConfig);
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+
+        // Configure audio settings if permission is granted
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+            AudioConfig audioConfig = new AudioConfig();
+            streamer.configure(audioConfig);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.RECORD_AUDIO}, 1001);
             return;
         }
-        streamer.configure(audioConfig);
-        Runnable streamRun = () -> {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
-            streamer.startStreamFromJava("rtmp://45.32.115.43/live/ahd");
-        };
-        streamRun.run();
+
+        // Start the streaming process
+        new Thread(() -> {
+            try {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+                streamer.startStreamFromJava("rtmp://45.32.115.43/live/ahd");
+            } catch (Exception e) {
+                Log.e("StreamError", "Streaming failed", e);
+                toast("Streaming failed: " + e.getMessage());
+            }
+        }).start();
+
     }
 
     private void toast(String message) {
