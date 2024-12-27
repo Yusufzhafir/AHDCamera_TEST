@@ -950,31 +950,6 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
         // Initialize streamer with error and connection listeners
     }
     private void configureAndStart(){
-        streamer = new ScreenRecorderRtmpLiveStreamer(getApplicationContext(), true, new OnErrorListener() {
-            @Override
-            public void onError(@NonNull StreamPackError error) {
-                Log.e("StreamError", "Error Code: " + error.getClass() + ", Message: " + error.getMessage());
-                toast("An error occurred: " + error.getMessage());
-            }
-        }, new OnConnectionListener() {
-            @Override
-            public void onLost(@NonNull String message) {
-                Log.e("StreamConnection", "Connection lost: " + message);
-                toast("Connection lost: " + message);
-            }
-
-            @Override
-            public void onFailed(@NonNull String message) {
-                Log.e("StreamConnection", "Connection failed: " + message);
-                toast("Connection failed: " + message);
-            }
-
-            @Override
-            public void onSuccess() {
-                Log.d("StreamConnection", "Connection successful");
-                toast("Connection successful");
-            }
-        });
 
         // Retrieve device refresh rate to calculate FPS
         DisplayManager displayManager = (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
