@@ -50,7 +50,7 @@ public class QCarRecorderVideoPathDemo implements IQCarRecorderVideoPathCB {
         if (rootPath == null) {
             return null;
         }
-        rootPath += "/AhdCam";
+
         if (mediaType == MEDIA_VIDEO_TYPE_MIAN_STRAM) {
             path = rootPath + "/main_" + encoderParam.getCsiphyNum() + "_" + encoderParam.getChannel() + "_" + stampToDate(System.currentTimeMillis()) + RecorderUtil.getSuffixName(encoderParam.getEncoderMineType(), 0, encoderParam.getStreamOutputFormat());
         }else if (mediaType == MEDIA_VIDEO_TYPE_MERGE_STREAM) {
