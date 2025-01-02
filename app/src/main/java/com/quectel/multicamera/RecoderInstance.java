@@ -209,7 +209,7 @@ public class RecoderInstance {
                 avcEncoder.setQCarAudio(carAudio);
             }
 
-            //avcEncoder.registerRecorderVideoPathCB(GUtilMain.getQRVPDemo());
+            avcEncoder.registerRecorderVideoPathCB(GUtilMain.getQRVPDemo());
             avcEncoder.startRecorder();
 
             if (subStreamEnable) {

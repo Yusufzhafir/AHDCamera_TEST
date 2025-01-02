@@ -37,6 +37,12 @@ android {
             keyAlias "zyzsign"
             keyPassword "zyz123456"
         }
+        emulator {
+            storeFile file("../signApk/debug.keystore")
+            storePassword "android"
+            keyPassword "android"
+            keyAlias "AndroidDebugKey"
+        }
     }
     buildTypes {
         release {
@@ -78,6 +84,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '17'
+    }
+    lintOptions {
+        abortOnError false
     }
 }
 

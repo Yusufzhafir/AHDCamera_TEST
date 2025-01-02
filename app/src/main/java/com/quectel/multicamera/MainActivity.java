@@ -895,10 +895,12 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
         startShow();
         startMirrorImage();
         if (rParams.getRecordState()) {
-            if (getStoragePath(MainActivity.this, true) != null && getStoragePath(MainActivity.this, true).contains("storage"))
+            if (getStoragePath(MainActivity.this, true) != null && getStoragePath(MainActivity.this, true).contains("storage")){
                 new Handler().postDelayed(mStartRecordService, 1000);
-            else
+            }
+            else{
                 Toast.makeText(getApplicationContext(), getString(R.string.sdcard_disable), Toast.LENGTH_SHORT).show();
+            }
         }
         initStream();
     }

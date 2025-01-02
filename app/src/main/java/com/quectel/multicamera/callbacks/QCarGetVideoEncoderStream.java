@@ -1,6 +1,7 @@
 package com.quectel.multicamera.callbacks;
 
 import android.media.MediaCodec;
+import android.util.Log;
 
 import com.quectel.multicamera.utils.GUtilMain;
 import com.quectel.qcarapi.cb.IQCarVideoEncoderStreamCB;
@@ -36,7 +37,7 @@ public class QCarGetVideoEncoderStream implements IQCarVideoEncoderStreamCB {
             QCarLog.e(QCarLog.LOG_MODULE_APP, TAG, "The file path that saved sub encode stream is null");
             return ;
         }
-
+        Log.d("PATH","PATHNYA ADALAH "+subEncPathUtil.getPath());
         File file = new File(subEncPathUtil.getPath());
         if (file.exists()) {
             file.delete();
