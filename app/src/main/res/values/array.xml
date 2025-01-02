@@ -52,7 +52,7 @@
         <item>200M</item>
         <item>1min</item>
         <item>3min</item>
-        <item>7min</item>
+        <item>10min</item>
     </string-array>
 
     <string-array name="codecType">
