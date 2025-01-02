@@ -67,7 +67,7 @@ public class GUtilMain {
         }else if (position == 4) {
             return 3*60*1000;
         }else if (position == 5) {
-            return 10*60*1000;
+            return 7*60*1000;
         }else {
             return 50 * 1024 * 1024;
         }
