@@ -1,5 +1,6 @@
 package com.quectel.multicamera;
 
+import android.ai.SystemAlg;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -9,14 +10,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.hardware.display.DisplayManager;
 import android.location.Location;
 import android.location.LocationProvider;
-import android.media.MediaFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,8 +22,6 @@ import android.os.Message;
 import android.os.PersistableBundle;
 import android.os.storage.StorageManager;
 import android.util.Log;
-import android.util.Size;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -37,22 +32,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import com.example.core.data.AudioConfig;
-import com.example.core.data.VideoConfig;
-import com.example.core.error.StreamPackError;
-import com.example.core.internal.encoders.MediaCodecHelper;
-import com.example.core.listeners.OnConnectionListener;
-import com.example.core.listeners.OnErrorListener;
-import com.example.core.streamers.bases.BaseScreenRecorderStreamer;
-import com.example.core.streamers.interfaces.ILiveStreamer;
-import com.example.core.streamers.live.BaseScreenRecorderLiveStreamer;
-import com.example.extension_rtmp.services.ScreenRecorderRtmpLiveService;
-import com.example.extension_rtmp.streamers.ScreenRecorderRtmpLiveStreamer;
 import com.quectel.multicamera.dialog.ADASConfigDialog;
 import com.quectel.multicamera.dialog.CalibrationDialog;
 import com.quectel.multicamera.dialog.DMSConfigDialog;
@@ -283,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
 
         IntentFilter filter = new IntentFilter();
         filter.addAction("com.quectel.multicamera.RecordService.onclick");
-        registerReceiver(mReceiver, filter, Context.RECEIVER_VISIBLE_TO_INSTANT_APPS | Context.RECEIVER_NOT_EXPORTED);
+        registerReceiver(mReceiver, filter, Context.RECEIVER_VISIBLE_TO_INSTANT_APPS);
 
         pParams = GUtilMain.getPreviewParams();
         pParams.setDMSEnable(false);
@@ -331,8 +312,8 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
         mBeepManager = new BeepManager(MainActivity.this);
         mHandler = new DialogHandler();
 
-//        InitAIOperation initAIOperation = new InitAIOperation();
-//        initAIOperation.start();
+        InitAIOperation initAIOperation = new InitAIOperation();
+        initAIOperation.start();
 
         mplayManagerThread = new playManagerThread(20);
         mplayManagerThread.start();
@@ -363,6 +344,116 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
             infoStr = "null";
         }
         return infoStr;
+    }
+
+    //算法文件拷贝以及启动算法
+    private class InitAIOperation extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            //Start ADAS
+            final int retValue = SystemAlg.detectInit(new SystemAlg.OnEventChangeListener() {
+                @Override
+                public void onEventChanged(int i, int[] ints) {
+                    Message msg = mHandler.obtainMessage();
+                    msg.what = i;
+                    msg.obj = ints;
+                    mHandler.sendMessage(msg);
+                }
+            }, 7);
+            System.out.println("zyz-->retValue=" + retValue);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(MainActivity.this, retValue + "", Toast.LENGTH_LONG).show();
+                }
+            });
+            if (retValue != 0) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), getString(R.string.init_detect_err), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                return;
+            }
+
+            int ret = SystemAlg.getSignType();
+            Log.d("qwe", "run: " + ret);
+            if (ret == 1) {//ADAS
+                ADAS_ENABLE = true;
+            } else if (ret == 2) {//BSD
+                BSD_ENABLE = true;
+            } else if (ret == 3) {//ADAS+BSD
+                ADAS_ENABLE = true;
+                BSD_ENABLE = true;
+            } else if (ret == 4) {//DMS
+                DMS_ENABLE = true;
+            } else if (ret == 5) {//ADAS+DMS
+                ADAS_ENABLE = true;
+                DMS_ENABLE = true;
+            } else if (ret == 6) {//BSD+DMS
+                BSD_ENABLE = true;
+                DMS_ENABLE = true;
+            } else if (ret == 7) {//ADAS+BSD+DMS
+                ADAS_ENABLE = true;
+                BSD_ENABLE = true;
+                DMS_ENABLE = true;
+            } else {// NULL
+                ADAS_ENABLE = false;
+                BSD_ENABLE = false;
+                DMS_ENABLE = false;
+            }
+
+//            ADAS_ENABLE = true;
+//            BSD_ENABLE = true;
+//            DMS_ENABLE = true;
+
+            mFaceVerityThread = new FaceVerityThread(pParams.getIdentityCheckInterval());
+            mFaceVerityThread.start();
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    if (!BSD_ENABLE) {
+                        if (!DMS_ENABLE) {
+                            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) adas_button.getLayoutParams();
+                            layoutParams.setMargins(0, 0, 0, change(180));
+                            adas_button.setLayoutParams(layoutParams);
+                        } else {
+                            FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) adas_button.getLayoutParams();
+                            layoutParams2.setMargins(0, 0, 0, change(225));
+                            adas_button.setLayoutParams(layoutParams2);
+
+                            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) dms_button.getLayoutParams();
+                            layoutParams.setMargins(0, 0, 0, change(180));
+                            dms_button.setLayoutParams(layoutParams);
+                        }
+                    } else {
+                        if (!DMS_ENABLE) {
+                            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) adas_button.getLayoutParams();
+                            layoutParams.setMargins(0, 0, 0, change(225));
+                            adas_button.setLayoutParams(layoutParams);
+                        }
+                    }
+
+
+                    adas_button.setVisibility(ADAS_ENABLE ? View.VISIBLE : View.GONE);
+                    dms_button.setVisibility(DMS_ENABLE ? View.VISIBLE : View.GONE);
+                    bsd_button.setVisibility(BSD_ENABLE ? View.VISIBLE : View.GONE);
+                    dms_button.setEnabled(true);
+                    adas_button.setEnabled(true);
+                    bsd_button.setEnabled(true);
+                }
+            });
+        }
+    }
+
+    private int change(int dp) {
+        final float scale = getResources().getDisplayMetrics().density;
+        //由30dp转化来的px
+        return (int) (dp * scale + 0.5f);
     }
 
     private class DMSDetectThread extends Thread {
@@ -411,7 +502,7 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
                 } else {
                     data = decodeValue(by_dms);
                     float res;
-//                    res = SystemAlg.doDMS(data, (float) mGpsSpeed);
+                    res = SystemAlg.doDMS(data, (float) mGpsSpeed);
                 }
             }
             runOnUiThread(new Runnable() {
@@ -460,7 +551,7 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
         @Override
         public void run() {
             File file;
-//            SystemAlg.initFaceFeaturePara();
+            SystemAlg.initFaceFeaturePara();
             //读取本地文件，导入人脸特征
             for (int i = 0; i < pParams.getFaceNumber(); i++) {
                 path = getFilesDir().getAbsolutePath() + File.separator + pParams.getIdentityPictureName() + i;
@@ -477,16 +568,16 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
                             }
                         });
                     }
-//                    System.out.println("zyz --> data len --> "+data.length+", file len --> "+file.length());
-//                    if (!SystemAlg.readTargetFaceData(i, data, (int) file.length())) {
-//                        final int num = i;
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                Toast.makeText(getApplicationContext(), "identity" + num + getString(R.string.dms_verity_face_faile), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//                    }
+                    System.out.println("zyz --> data len --> " + data.length + ", file len --> " + file.length());
+                    if (!SystemAlg.readTargetFaceData(i, data, (int) file.length())) {
+                        final int num = i;
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), "identity" + num + getString(R.string.dms_verity_face_faile), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
                 } else {
                     System.out.println("zyz --> file " + file.getName() + " is lost !!!");
                     break;
@@ -519,16 +610,16 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
                             Toast.makeText(getApplicationContext(), getString(R.string.dms_verity_face_faile), Toast.LENGTH_SHORT).show();
 //                            return;
                         }
-//                        boolean res = SystemAlg.verityFaceFeature(FACE_CONTRAST_COEFFICIENT, pParams.getFaceNumber());
-//                        System.out.println("zyz --> verityFaceFeature --> " + res);
-//                        if (!res) {
-//                            if ((cumulativeTimes++) >= 2) {
-//                                cumulativeTimes = 0;
-//                                mplayManagerThread.addMusic(0x1000);
-//                            }
-//                        } else {
-//                            cumulativeTimes = 0;
-//                        }
+                        boolean res = SystemAlg.verityFaceFeature(FACE_CONTRAST_COEFFICIENT, pParams.getFaceNumber());
+                        System.out.println("zyz --> verityFaceFeature --> " + res);
+                        if (!res) {
+                            if ((cumulativeTimes++) >= 2) {
+                                cumulativeTimes = 0;
+                                mplayManagerThread.addMusic(0x1000);
+                            }
+                        } else {
+                            cumulativeTimes = 0;
+                        }
                     }
                 } else {
 //                    System.out.println("zyz --> isFaceExist="+isFaceExist+", pParams.getIdentityEnable()="+pParams.getIdentityEnable());
@@ -895,96 +986,95 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
         startShow();
         startMirrorImage();
         if (rParams.getRecordState()) {
-            if (getStoragePath(MainActivity.this, true) != null && getStoragePath(MainActivity.this, true).contains("storage")){
+            if (getStoragePath(MainActivity.this, true) != null && getStoragePath(MainActivity.this, true).contains("storage")) {
                 new Handler().postDelayed(mStartRecordService, 1000);
-            }
-            else{
+            } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.sdcard_disable), Toast.LENGTH_SHORT).show();
             }
         }
-        initStream();
+//        initStream();
     }
 
     private ActivityResultLauncher<String> requestAudioPermissionsLauncher;
     private ActivityResultLauncher<Intent> getContentLauncher;
 
-    private void initStream() {
-        // Initialize the audio permissions launcher
-        requestAudioPermissionsLauncher = registerForActivityResult(
-                new ActivityResultContracts.RequestPermission(),
-                isGranted -> {
-                    if (!isGranted) {
-                    } else {
-                        Intent screenRecorderIntent = BaseScreenRecorderStreamer.Companion.createScreenRecorderIntent(this);
-                        getContentLauncher.launch(screenRecorderIntent);
-                    }
-                }
-        );
-
-        // Initialize the getContent launcher
-        getContentLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        Intent data = result.getData();
-                        ScreenRecorderRtmpLiveService.Companion.launch(
-                                        this,
-                                DemoScreenRecorderRtmpLiveService.class,
-                                true,
-                                streamer -> {
-                                    this.streamer = streamer;
-                                    this.streamer.setActivityResult(result);
-                                    try {
-                                        configureAndStart();
-                                        moveTaskToBack(true);
-                                    } catch (Exception e) {
-                                        Log.e(TAG, "Error while starting streamer", e);
-                                    }
-                                    return null;
-                                },
-                                name -> null
-                        );
-                    }
-                }
-        );
-
-        requestAudioPermissionsLauncher.launch(android.Manifest.permission.RECORD_AUDIO);
-        // Initialize streamer with error and connection listeners
-    }
-    private void configureAndStart(){
-
-        // Retrieve device refresh rate to calculate FPS
-        DisplayManager displayManager = (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
-        Display display = displayManager.getDisplay(Display.DEFAULT_DISPLAY);
-        int deviceRefreshRate = (int) display.getRefreshRate();
-        int fps = MediaCodecHelper.Video.INSTANCE.getFramerateRange("video/avc").contains(deviceRefreshRate)
-                ? deviceRefreshRate
-                : 30;
-
-        // Configure video settings
-        VideoConfig videoConfig = new VideoConfig();
-        streamer.configure(videoConfig);
-
-        // Configure audio settings if permission is granted
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-            AudioConfig audioConfig = new AudioConfig();
-            streamer.configure(audioConfig);
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.RECORD_AUDIO}, 1001);
-            return;
-        }
-
-        // Start the streaming process
-        new Thread(() -> {
-            try {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
-                streamer.startStreamFromJava("rtmp://45.32.115.43/live/ahd");
-            } catch (Exception e) {
-                Log.e("StreamError", "Streaming failed", e);
-                toast("Streaming failed: " + e.getMessage());
-            }
-        }).start();
-    }
+//    private void initStream() {
+//        // Initialize the audio permissions launcher
+//        requestAudioPermissionsLauncher = registerForActivityResult(
+//                new ActivityResultContracts.RequestPermission(),
+//                isGranted -> {
+//                    if (!isGranted) {
+//                    } else {
+//                        Intent screenRecorderIntent = BaseScreenRecorderStreamer.Companion.createScreenRecorderIntent(this);
+//                        getContentLauncher.launch(screenRecorderIntent);
+//                    }
+//                }
+//        );
+//
+//        // Initialize the getContent launcher
+//        getContentLauncher = registerForActivityResult(
+//                new ActivityResultContracts.StartActivityForResult(),
+//                result -> {
+//                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+//                        Intent data = result.getData();
+//                        ScreenRecorderRtmpLiveService.Companion.launch(
+//                                        this,
+//                                DemoScreenRecorderRtmpLiveService.class,
+//                                true,
+//                                streamer -> {
+//                                    this.streamer = streamer;
+//                                    this.streamer.setActivityResult(result);
+//                                    try {
+//                                        configureAndStart();
+//                                        moveTaskToBack(true);
+//                                    } catch (Exception e) {
+//                                        Log.e(TAG, "Error while starting streamer", e);
+//                                    }
+//                                    return null;
+//                                },
+//                                name -> null
+//                        );
+//                    }
+//                }
+//        );
+//
+//        requestAudioPermissionsLauncher.launch(android.Manifest.permission.RECORD_AUDIO);
+//        // Initialize streamer with error and connection listeners
+//    }
+//    private void configureAndStart(){
+//
+//        // Retrieve device refresh rate to calculate FPS
+//        DisplayManager displayManager = (DisplayManager) getSystemService(Context.DISPLAY_SERVICE);
+//        Display display = displayManager.getDisplay(Display.DEFAULT_DISPLAY);
+//        int deviceRefreshRate = (int) display.getRefreshRate();
+//        int fps = MediaCodecHelper.Video.INSTANCE.getFramerateRange("video/avc").contains(deviceRefreshRate)
+//                ? deviceRefreshRate
+//                : 30;
+//
+//        // Configure video settings
+//        VideoConfig videoConfig = new VideoConfig();
+//        streamer.configure(videoConfig);
+//
+//        // Configure audio settings if permission is granted
+//        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+//            AudioConfig audioConfig = new AudioConfig();
+//            streamer.configure(audioConfig);
+//        } else {
+//            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.RECORD_AUDIO}, 1001);
+//            return;
+//        }
+//
+//        // Start the streaming process
+//        new Thread(() -> {
+//            try {
+//                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+//                streamer.startStreamFromJava("rtmp://45.32.115.43/live/ahd");
+//            } catch (Exception e) {
+//                Log.e("StreamError", "Streaming failed", e);
+//                toast("Streaming failed: " + e.getMessage());
+//            }
+//        }).start();
+//    }
 
     private void toast(String message) {
         MainActivity.this.runOnUiThread(new Runnable() {
@@ -1101,7 +1191,7 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
 //        }
     }
 
-    private BaseScreenRecorderLiveStreamer streamer;
+//    private BaseScreenRecorderLiveStreamer streamer;
 
     private void addMainOsd() {
         new Thread(new Runnable() {
@@ -1460,8 +1550,8 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
                 pParams.setADASEnable(false);
                 return;
             } else if (msg.what == 9) {//ADAS标定完成调用
-//                int ret = SystemAlg.calibrationADAS(pParams.getCarLen(), pParams.getCarWidth(), pParams.getRefCenter(), pParams.getRefTop(), pParams.getDisLen2Tyre(), pParams.getCameraHeight(), pParams.getPointX(), pParams.getPointY());
-//                System.out.println("zyz --> calibrationADAS ret = "+ret);
+                int ret = SystemAlg.calibrationADAS(pParams.getCarLen(), pParams.getCarWidth(), pParams.getRefCenter(), pParams.getRefTop(), pParams.getDisLen2Tyre(), pParams.getCameraHeight(), pParams.getPointX(), pParams.getPointY());
+                System.out.println("zyz --> calibrationADAS ret = " + ret);
                 adas_button.setEnabled(true);
 //                if (ret != 0) {
 //                    Toast.makeText(MainActivity.this, getString(R.string.adas_cal_warn), Toast.LENGTH_SHORT).show();
@@ -1519,8 +1609,8 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
                 bsd_button.setEnabled(true);
                 return;
             } else if (msg.what == 15) {//BSD标定完成调用
-//                int ret = SystemAlg.calibrationBSD(pParams.getCameraHeight(), pParams.getCameraFocus(), pParams.getCameraDx(), pParams.getPointX(), pParams.getPointY(), pParams.getFirstWarnDistance(), pParams.getSecondWarnDistance(), pParams.getThirdWarnDistance(), pParams.getFrontWarnDistance());
-//                System.out.println("zyz --> calibrationBSD ret = "+ret);
+                int ret = SystemAlg.calibrationBSD(pParams.getCameraHeight(), pParams.getCameraFocus(), pParams.getCameraDx(), pParams.getPointX(), pParams.getPointY(), pParams.getFirstWarnDistance(), pParams.getSecondWarnDistance(), pParams.getThirdWarnDistance(), pParams.getFrontWarnDistance());
+                System.out.println("zyz --> calibrationBSD ret = " + ret);
                 bsd_button.setEnabled(true);
 //                if (ret != 0) {
 //                    Toast.makeText(MainActivity.this, getString(R.string.bsd_cal_warn), Toast.LENGTH_SHORT).show();
@@ -1577,19 +1667,19 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
 //                System.out.println("zyz --> mSpeedMode --> "+mSpeedMode);
                 return;
             } else if (msg.what == 21) {//ADAS确定按键，启动ADAS
-//                int ret = SystemAlg.loadADASWarnConfig();
-//                System.out.println("zyz --> loadAdasWarnConfig ret = " + ret);
-//                if (ret != 0) {
-//                    Toast.makeText(MainActivity.this, getString(R.string.adas_load_conf_err), Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//                ret = SystemAlg.loadDMSConfig();
-////                System.out.println("zyz --> loadDMSConfig ret = " + ret);
-//                if (ret != 0) {
-//                    Toast.makeText(MainActivity.this, getString(R.string.dms_load_conf_err), Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
+                int ret = SystemAlg.loadADASWarnConfig();
+                System.out.println("zyz --> loadAdasWarnConfig ret = " + ret);
+                if (ret != 0) {
+                    Toast.makeText(MainActivity.this, getString(R.string.adas_load_conf_err), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                ret = SystemAlg.loadDMSConfig();
+                System.out.println("zyz --> loadDMSConfig ret = " + ret);
+                if (ret != 0) {
+                    Toast.makeText(MainActivity.this, getString(R.string.dms_load_conf_err), Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (!pParams.getADASEnable()) {
                     return;
                 }
@@ -1614,12 +1704,12 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
                 isCalCall = true;
                 return;
             } else if (msg.what == 25) {//DMS配置确定按键
-//                int ret = SystemAlg.loadDMSConfig();
-//                System.out.println("zyz --> loadDMSConfig ret = " + ret);
-//                if (ret != 0) {
-//                    Toast.makeText(MainActivity.this, getString(R.string.dms_load_conf_err), Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
+                int ret = SystemAlg.loadDMSConfig();
+                System.out.println("zyz --> loadDMSConfig ret = " + ret);
+                if (ret != 0) {
+                    Toast.makeText(MainActivity.this, getString(R.string.dms_load_conf_err), Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if (pParams.getDMSEnable()) {
                     mDMSDetectThread = null;
@@ -1704,19 +1794,19 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
                             byte[] data;
                             try {
                                 data = FileUtils.toByteArray(mPath);
-//                                if (!SystemAlg.readTargetFaceData(pParams.getFaceNumber(), data, data.length)) {
-//                                    SystemAlg.clearFaceFeature(pParams.getFaceNumber());
-//                                    System.out.println("zyz --> ConformDialog -->Failed to added face feature to array !!!");
-//                                    Toast.makeText(getApplicationContext(), getString(R.string.identity_verity_face_null), Toast.LENGTH_SHORT).show();
-//                                    mDMSConfigDialog.showIdentityDialog();
-//                                    mConformDialog.dismiss();
-//                                    mConformDialog = null;
-//                                    return;
-//                                }
+                                if (!SystemAlg.readTargetFaceData(pParams.getFaceNumber(), data, data.length)) {
+                                    SystemAlg.clearFaceFeature(pParams.getFaceNumber());
+                                    System.out.println("zyz --> ConformDialog -->Failed to added face feature to array !!!");
+                                    Toast.makeText(getApplicationContext(), getString(R.string.identity_verity_face_null), Toast.LENGTH_SHORT).show();
+                                    mDMSConfigDialog.showIdentityDialog();
+                                    mConformDialog.dismiss();
+                                    mConformDialog = null;
+                                    return;
+                                }
                             } catch (IOException e) {
                                 e.printStackTrace();
                                 System.out.println("zyz --> ConformDialog --> get add identity data failed !!!");
-//                                SystemAlg.clearFaceFeature(pParams.getFaceNumber());
+                                SystemAlg.clearFaceFeature(pParams.getFaceNumber());
                                 Toast.makeText(getApplicationContext(), getString(R.string.identity_image_file_data_error), Toast.LENGTH_SHORT).show();
                                 mDMSConfigDialog.showIdentityDialog();
                                 mConformDialog.dismiss();
@@ -2107,7 +2197,7 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
         unregisterReceiver(mReceiver);
 
         LocationUtils.unregister();
-//        SystemAlg.detectUnInit();
+        SystemAlg.detectUnInit();
 
         if (mSettingsDialog != null) {
             mSettingsDialog.dismiss();
@@ -2173,7 +2263,7 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
                     break;
                 } else {
                     data = decodeValue(by_adas);
-//                    SystemAlg.doADAS(data, (float) mGpsSpeed);
+                    SystemAlg.doADAS(data, (float) mGpsSpeed);
                 }
             }
             runOnUiThread(new Runnable() {
@@ -2330,7 +2420,7 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
                     break;
                 } else {
                     data = decodeValue(by_bsd);
-//                    SystemAlg.doBSD(data, (float) mGpsSpeed);
+                    SystemAlg.doBSD(data, (float) mGpsSpeed);
                 }
             }
             runOnUiThread(new Runnable() {

@@ -2,13 +2,12 @@ package com.quectel.multicamera;
 
 import android.content.Context;
 import android.os.StatFs;
-import android.util.Log;
 
 import com.quectel.multicamera.utils.GUtilMain;
 import com.quectel.qcarapi.cb.IQCarRecorderVideoPathCB;
 import com.quectel.qcarapi.recorder.QCarEncParam;
-import com.quectel.qcarlib.db.RecorderSQLiteOpenHelper;
 import com.quectel.qcarapi.util.QCarLog;
+import com.quectel.qcarlib.db.RecorderSQLiteOpenHelper;
 import com.quectel.qcarlib.utils.RecorderUtil;
 import com.quectel.qcarlib.utils.StorageUtil;
 
@@ -21,12 +20,13 @@ public class QCarRecorderVideoPathDemo implements IQCarRecorderVideoPathCB {
     public static final int MEDIA_VIDEO_TYPE_MIAN_STRAM = 0;
     public static final int MEDIA_VIDEO_TYPE_MERGE_STREAM = 2;
     public static final int MEDIA_VIDEO_TYPE_SUB_STREAM = 2;
-    public static final int MEDIA_VIDEO_TYPE_COLLISION_STREAM= 3;
-    public static final int MEDIA_VIDEO_TYPE_PICTURE_JPEG= 4;
+    public static final int MEDIA_VIDEO_TYPE_COLLISION_STREAM = 3;
+    public static final int MEDIA_VIDEO_TYPE_PICTURE_JPEG = 4;
     private static String TAG = "QCarRecorderVideoPathDemo";
 
     private RecorderSQLiteOpenHelper sqLiteOpenHelper;
-    public String stampToDate(long timeMillis){
+
+    public String stampToDate(long timeMillis) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT-7:00"));
         Date date = new Date(timeMillis);
@@ -46,20 +46,20 @@ public class QCarRecorderVideoPathDemo implements IQCarRecorderVideoPathCB {
         String rootPath; //default
 
         sqLiteOpenHelper = RecorderUtil.getRsqliteHelper(mContext);
-        rootPath = StorageUtil.getStoragePath(mContext,true);
+        rootPath = StorageUtil.getStoragePath(mContext, true);
         if (rootPath == null) {
             return null;
         }
 
         if (mediaType == MEDIA_VIDEO_TYPE_MIAN_STRAM) {
             path = rootPath + "/main_" + encoderParam.getCsiphyNum() + "_" + encoderParam.getChannel() + "_" + stampToDate(System.currentTimeMillis()) + RecorderUtil.getSuffixName(encoderParam.getEncoderMineType(), 0, encoderParam.getStreamOutputFormat());
-        }else if (mediaType == MEDIA_VIDEO_TYPE_MERGE_STREAM) {
-            path = rootPath + "/merge_" + encoderParam.getCsiphyNum() +  "_" + stampToDate(System.currentTimeMillis()) + RecorderUtil.getSuffixName(encoderParam.getEncoderMineType(), 0, encoderParam.getStreamOutputFormat());
-        }else if (mediaType == MEDIA_VIDEO_TYPE_COLLISION_STREAM) {
+        } else if (mediaType == MEDIA_VIDEO_TYPE_MERGE_STREAM) {
+            path = rootPath + "/merge_" + encoderParam.getCsiphyNum() + "_" + stampToDate(System.currentTimeMillis()) + RecorderUtil.getSuffixName(encoderParam.getEncoderMineType(), 0, encoderParam.getStreamOutputFormat());
+        } else if (mediaType == MEDIA_VIDEO_TYPE_COLLISION_STREAM) {
             path = rootPath + "/collision_" + encoderParam.getCsiphyNum() + "_" + encoderParam.getChannel() + "_" + stampToDate(System.currentTimeMillis()) + RecorderUtil.getSuffixName(encoderParam.getEncoderMineType(), 0, encoderParam.getStreamOutputFormat());
-        }else if (mediaType == MEDIA_VIDEO_TYPE_SUB_STREAM) {
+        } else if (mediaType == MEDIA_VIDEO_TYPE_SUB_STREAM) {
             path = rootPath + "/child_" + encoderParam.getCsiphyNum() + "_" + encoderParam.getChannel() + "_" + stampToDate(System.currentTimeMillis()) + RecorderUtil.getSuffixName(encoderParam.getEncoderMineType(), 1, encoderParam.getStreamOutputFormat());
-        }else
+        } else
             path = "/sdcard/DCIM/err.stream";
 
 
@@ -82,7 +82,7 @@ public class QCarRecorderVideoPathDemo implements IQCarRecorderVideoPathCB {
         String rootPath; //default
 
         sqLiteOpenHelper = RecorderUtil.getRsqliteHelper(mContext);
-        rootPath = StorageUtil.getStoragePath(mContext,true);
+        rootPath = StorageUtil.getStoragePath(mContext, true);
         if (rootPath == null) {
             return null;
         }
@@ -90,13 +90,13 @@ public class QCarRecorderVideoPathDemo implements IQCarRecorderVideoPathCB {
 
         if (mediaType == MEDIA_VIDEO_TYPE_MIAN_STRAM) {
             path = rootPath + "/main_" + encoderParam.getCsiphyNum() + "_" + encoderParam.getChannel() + "_" + stampToDate(System.currentTimeMillis()) + RecorderUtil.getSuffixName(encoderParam.getEncoderMineType(), 0, encoderParam.getStreamOutputFormat());
-        }else if (mediaType == MEDIA_VIDEO_TYPE_MERGE_STREAM) {
-            path = rootPath + "/merge_" + encoderParam.getCsiphyNum() +  "_" + stampToDate(System.currentTimeMillis()) + RecorderUtil.getSuffixName(encoderParam.getEncoderMineType(), 0, encoderParam.getStreamOutputFormat());
-        }else if (mediaType == MEDIA_VIDEO_TYPE_COLLISION_STREAM) {
+        } else if (mediaType == MEDIA_VIDEO_TYPE_MERGE_STREAM) {
+            path = rootPath + "/merge_" + encoderParam.getCsiphyNum() + "_" + stampToDate(System.currentTimeMillis()) + RecorderUtil.getSuffixName(encoderParam.getEncoderMineType(), 0, encoderParam.getStreamOutputFormat());
+        } else if (mediaType == MEDIA_VIDEO_TYPE_COLLISION_STREAM) {
             path = rootPath + "/collision_" + encoderParam.getCsiphyNum() + "_" + encoderParam.getChannel() + "_" + stampToDate(System.currentTimeMillis()) + RecorderUtil.getSuffixName(encoderParam.getEncoderMineType(), 0, encoderParam.getStreamOutputFormat());
-        }else if (mediaType == MEDIA_VIDEO_TYPE_SUB_STREAM) {
+        } else if (mediaType == MEDIA_VIDEO_TYPE_SUB_STREAM) {
             path = rootPath + "/child_" + encoderParam.getCsiphyNum() + "_" + encoderParam.getChannel() + "_" + stampToDate(System.currentTimeMillis()) + RecorderUtil.getSuffixName(encoderParam.getEncoderMineType(), 1, encoderParam.getStreamOutputFormat());
-        }else
+        } else
             path = "/sdcard/DCIM/err.stream";
 
 

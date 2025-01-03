@@ -1,9 +1,5 @@
 package com.quectel.multicamera.utils;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-
 public class RecorderParams {
     private int codecTypePosition = 0;
     private int width = 1280, width1 = 1280, width2 = 1280, width3 = 1280, width4 = 1280, width5 = 1280, width6 = 1280;
@@ -11,53 +7,55 @@ public class RecorderParams {
     private int csiNum = 2;
     private boolean recordState = false;
 
-    public void setRecordState(boolean record){
+    public void setRecordState(boolean record) {
         this.recordState = record;
         GUtilMain.mEditor.putBoolean("video_record", recordState);
         GUtilMain.mEditor.commit();
     }
 
-    public boolean getRecordState(){
+    public boolean getRecordState() {
         recordState = GUtilMain.mSharedPreferences.getBoolean("video_record", recordState);
         return recordState;
     }
 
     private boolean videoMirror = false;
-    public void setVidoeMirror(boolean mirror){
+
+    public void setVidoeMirror(boolean mirror) {
         this.videoMirror = mirror;
         GUtilMain.mEditor.putBoolean("video_mirror", videoMirror);
         GUtilMain.mEditor.commit();
     }
-    public boolean getVideoMirror(){
+
+    public boolean getVideoMirror() {
         videoMirror = GUtilMain.mSharedPreferences.getBoolean("video_mirror", videoMirror);
         return videoMirror;
     }
 
     public int getWidth(int csi_num, int channel) {
-        if (csi_num == 0){
-            if (channel == 0){
+        if (csi_num == 0) {
+            if (channel == 0) {
                 width1 = GUtilMain.mSharedPreferences.getInt("recorder_width1", width1);
                 return width1;
-            }else if (channel == 1){
+            } else if (channel == 1) {
                 width2 = GUtilMain.mSharedPreferences.getInt("recorder_width2", width2);
                 return width2;
-            }else if (channel == 2){
+            } else if (channel == 2) {
                 width3 = GUtilMain.mSharedPreferences.getInt("recorder_width3", width3);
                 return width3;
-            }else {
+            } else {
                 return 0;
             }
-        }else if (csi_num == 1){
-            if (channel == 0){
+        } else if (csi_num == 1) {
+            if (channel == 0) {
                 width4 = GUtilMain.mSharedPreferences.getInt("recorder_width4", width4);
                 return width4;
-            }else if (channel == 1){
+            } else if (channel == 1) {
                 width5 = GUtilMain.mSharedPreferences.getInt("recorder_width5", width5);
                 return width5;
-            }else if (channel == 2){
+            } else if (channel == 2) {
                 width6 = GUtilMain.mSharedPreferences.getInt("recorder_width6", width6);
                 return width6;
-            }else {
+            } else {
                 return 0;
             }
         }
@@ -69,30 +67,30 @@ public class RecorderParams {
     }
 
     public int getHeight(int csi_num, int channel) {
-        if (csi_num == 0){
-            if (channel == 0){
+        if (csi_num == 0) {
+            if (channel == 0) {
                 height1 = GUtilMain.mSharedPreferences.getInt("recorder_height1", height1);
                 return height1;
-            }else if (channel == 1){
+            } else if (channel == 1) {
                 height2 = GUtilMain.mSharedPreferences.getInt("recorder_height2", height2);
                 return height2;
-            }else if (channel == 2){
+            } else if (channel == 2) {
                 height3 = GUtilMain.mSharedPreferences.getInt("recorder_height3", height3);
                 return height3;
-            }else {
+            } else {
                 return 0;
             }
-        }else if (csi_num == 1){
-            if (channel == 0){
+        } else if (csi_num == 1) {
+            if (channel == 0) {
                 height4 = GUtilMain.mSharedPreferences.getInt("recorder_height4", height4);
                 return height4;
-            }else if (channel == 1){
+            } else if (channel == 1) {
                 height5 = GUtilMain.mSharedPreferences.getInt("recorder_height5", height5);
                 return height5;
-            }else if (channel == 2){
+            } else if (channel == 2) {
                 height6 = GUtilMain.mSharedPreferences.getInt("recorder_height1", height6);
                 return height6;
-            }else {
+            } else {
                 return 0;
             }
         }
@@ -107,6 +105,7 @@ public class RecorderParams {
         codecTypePosition = GUtilMain.mSharedPreferences.getInt("codec_type_position", codecTypePosition);
         return codecTypePosition;
     }
+
     public void setCodecTypePosition(int codecTypePosition) {
         this.codecTypePosition = codecTypePosition;
         GUtilMain.mEditor.putInt("codec_type_position", codecTypePosition);
@@ -114,10 +113,12 @@ public class RecorderParams {
     }
 
     private int ssPosition = 5;  //分段录像位置
+
     public int getSegmentSizePosition() {
         ssPosition = GUtilMain.mSharedPreferences.getInt("ss_position", ssPosition);
         return ssPosition;
     }
+
     public void setSegmentSizePosition(int ssPosition) {
         this.ssPosition = ssPosition;
         GUtilMain.mEditor.putInt("ss_position", ssPosition);
@@ -125,14 +126,14 @@ public class RecorderParams {
     }
 
     private int child_size = 0; //default 640x480
-    private int vsPosition1 = 0,vsPosition2 = 0,vsPosition3 = 0,vsPosition4 = 0,vsPosition5 = 0,vsPosition6 = 0; //video分辨率位置
+    private int vsPosition1 = 0, vsPosition2 = 0, vsPosition3 = 0, vsPosition4 = 0, vsPosition5 = 0, vsPosition6 = 0; //video分辨率位置
 
     public int getVsPosition(int channel) {
-        if (channel<1 || channel>6){
+        if (channel < 1 || channel > 6) {
             System.out.println("zyz --> channel is out of range 0-6 !");
             return -1;
         }
-        switch (channel){
+        switch (channel) {
             case 1:
                 vsPosition1 = GUtilMain.mSharedPreferences.getInt("vs_position1", vsPosition1);
                 return vsPosition1;
@@ -157,11 +158,11 @@ public class RecorderParams {
     }
 
     public void setVsPosition(int vsPosition, int channel) {
-        if (channel<1 || channel>6){
+        if (channel < 1 || channel > 6) {
             System.out.println("zyz --> channel is out of range 0-6 !");
             return;
         }
-        switch (channel){
+        switch (channel) {
             case 1:
                 this.vsPosition1 = vsPosition;
                 GUtilMain.mEditor.putInt("vs_position1", vsPosition);
@@ -197,12 +198,12 @@ public class RecorderParams {
 
 
     public void adjustResolutionWidthReValue(String value, int channel) {
-        if (channel<1 || channel>6){
+        if (channel < 1 || channel > 6) {
             System.out.println("zyz --> channel is out of range 0-6 !");
             return;
         }
-        System.out.println("zyz --> value-> "+value+", channel->"+channel);
-        switch (channel){
+        System.out.println("zyz --> value-> " + value + ", channel->" + channel);
+        switch (channel) {
             case 1:
                 if (value.startsWith("1080")) {
                     width1 = 1920;
@@ -210,10 +211,10 @@ public class RecorderParams {
                 } else if (value.startsWith("720")) {
                     width1 = 1280;
                     height1 = 720;
-                }else if (value.startsWith("CVBS_NTSC")){
+                } else if (value.startsWith("CVBS_NTSC")) {
                     width1 = 720;
                     height1 = 480;
-                }else if (value.startsWith("CVBS_PAL")){
+                } else if (value.startsWith("CVBS_PAL")) {
                     width1 = 720;
                     height1 = 576;
                 }
@@ -227,10 +228,10 @@ public class RecorderParams {
                 } else if (value.startsWith("720")) {
                     width2 = 1280;
                     height2 = 720;
-                }else if (value.startsWith("CVBS_NTSC")){
+                } else if (value.startsWith("CVBS_NTSC")) {
                     width2 = 720;
                     height2 = 480;
-                }else if (value.startsWith("CVBS_PAL")){
+                } else if (value.startsWith("CVBS_PAL")) {
                     width2 = 720;
                     height2 = 576;
                 }
@@ -244,10 +245,10 @@ public class RecorderParams {
                 } else if (value.startsWith("720")) {
                     width3 = 1280;
                     height3 = 720;
-                }else if (value.startsWith("CVBS_NTSC")){
+                } else if (value.startsWith("CVBS_NTSC")) {
                     width3 = 720;
                     height3 = 480;
-                }else if (value.startsWith("CVBS_PAL")){
+                } else if (value.startsWith("CVBS_PAL")) {
                     width3 = 720;
                     height3 = 576;
                 }
@@ -261,10 +262,10 @@ public class RecorderParams {
                 } else if (value.startsWith("720")) {
                     width4 = 1280;
                     height4 = 720;
-                }else if (value.startsWith("CVBS_NTSC")){
+                } else if (value.startsWith("CVBS_NTSC")) {
                     width4 = 720;
                     height4 = 480;
-                }else if (value.startsWith("CVBS_PAL")){
+                } else if (value.startsWith("CVBS_PAL")) {
                     width4 = 720;
                     height4 = 576;
                 }
@@ -278,10 +279,10 @@ public class RecorderParams {
                 } else if (value.startsWith("720")) {
                     width5 = 1280;
                     height5 = 720;
-                }else if (value.startsWith("CVBS_NTSC")){
+                } else if (value.startsWith("CVBS_NTSC")) {
                     width5 = 720;
                     height5 = 480;
-                }else if (value.startsWith("CVBS_PAL")){
+                } else if (value.startsWith("CVBS_PAL")) {
                     width5 = 720;
                     height5 = 576;
                 }
@@ -295,10 +296,10 @@ public class RecorderParams {
                 } else if (value.startsWith("720")) {
                     width6 = 1280;
                     height6 = 720;
-                }else if (value.startsWith("CVBS_NTSC")){
+                } else if (value.startsWith("CVBS_NTSC")) {
                     width6 = 720;
                     height6 = 480;
-                }else if (value.startsWith("CVBS_PAL")){
+                } else if (value.startsWith("CVBS_PAL")) {
                     width6 = 720;
                     height6 = 576;
                 }
@@ -313,6 +314,7 @@ public class RecorderParams {
         child_size = GUtilMain.mSharedPreferences.getInt("child_size", child_size);
         return child_size;
     }
+
     public void setChild_size(int child_size) {
         this.child_size = child_size;
         GUtilMain.mEditor.putInt("child_size", child_size);
@@ -320,19 +322,22 @@ public class RecorderParams {
     }
 
     private int recorderNums = 8; //默认录像的个数为0，需要选标准录像或者四合一录像
+
     public int getRecorderNums() {
         recorderNums = GUtilMain.mSharedPreferences.getInt("recorder_nums", recorderNums);
         return recorderNums;
     }
+
     public void setRecorderNums(int recorderNums) {
         this.recorderNums = recorderNums;
         GUtilMain.mEditor.putInt("recorder_nums", recorderNums);
         GUtilMain.mEditor.commit();
     }
 
-    private boolean recordState1=false,recordState2=false,recordState3=false,recordState4=false,recordState5=false,recordState6=false;
-    public boolean getRecordState(int channel){
-        switch (channel){
+    private boolean recordState1 = false, recordState2 = false, recordState3 = false, recordState4 = false, recordState5 = false, recordState6 = false;
+
+    public boolean getRecordState(int channel) {
+        switch (channel) {
             case 1:
                 recordState1 = GUtilMain.mSharedPreferences.getBoolean("recorder_state_channe_1", recordState1);
                 return recordState1;
@@ -355,8 +360,9 @@ public class RecorderParams {
                 return false;
         }
     }
-    public void setRecordState(int channel, boolean state){
-        switch (channel){
+
+    public void setRecordState(int channel, boolean state) {
+        switch (channel) {
             case 1:
                 this.recordState1 = state;
                 GUtilMain.mEditor.putBoolean("recorder_state_channe_1", recordState1);
@@ -386,6 +392,7 @@ public class RecorderParams {
     }
 
     private boolean childRecordEnable = false; //默认不开启录像子码流
+
     public boolean isChildRecordEnable() {
         childRecordEnable = GUtilMain.mSharedPreferences.getBoolean("child_record_enable", childRecordEnable);
         return childRecordEnable;
@@ -398,6 +405,7 @@ public class RecorderParams {
     }
 
     private boolean audioRecordEnable = false; //默认不开启录像子码流
+
     public boolean isAudioRecordEnable() {
         audioRecordEnable = GUtilMain.mSharedPreferences.getBoolean("audio_record_enable", audioRecordEnable);
         return audioRecordEnable;
@@ -410,10 +418,12 @@ public class RecorderParams {
     }
 
     private int ctPosition = 0; //录像文件格式位置
+
     public int getCtPosition() {
         ctPosition = GUtilMain.mSharedPreferences.getInt("ct_position", ctPosition);
         return ctPosition;
     }
+
     public void setCtPosition(int ctPosition) {
         this.ctPosition = ctPosition;
         GUtilMain.mEditor.putInt("ct_position", ctPosition);
@@ -421,10 +431,12 @@ public class RecorderParams {
     }
 
     private int mainRatePosition = 0; //主码率
+
     public int getMainRatePosition() {
         mainRatePosition = GUtilMain.mSharedPreferences.getInt("main_rate_position", mainRatePosition);
         return mainRatePosition;
     }
+
     public void setMainRatePosition(int mrPosition) {
         this.mainRatePosition = mrPosition;
         GUtilMain.mEditor.putInt("main_rate_position", mainRatePosition);
@@ -432,10 +444,12 @@ public class RecorderParams {
     }
 
     private int subRatePosition = 0; //子码率
+
     public int getSubRatePosition() {
         subRatePosition = GUtilMain.mSharedPreferences.getInt("sub_rate_position", subRatePosition);
         return subRatePosition;
     }
+
     public void setSubRatePosition(int srPosition) {
         this.subRatePosition = srPosition;
         GUtilMain.mEditor.putInt("sub_rate_position", subRatePosition);

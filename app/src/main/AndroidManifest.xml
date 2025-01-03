@@ -28,11 +28,11 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".DemoScreenRecorderRtmpLiveService"
-            android:enabled="true"
-            android:exported="true"
-            />
+<!--        <service-->
+<!--            android:name=".DemoScreenRecorderRtmpLiveService"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true"-->
+<!--            />-->
 
         <activity android:name=".BackCamera"
             android:launchMode="standard">
