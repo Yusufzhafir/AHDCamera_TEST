@@ -140,7 +140,7 @@ public class SettingsDialog extends AlertDialog {
             }
         });
 
-        TextView version = (TextView) findViewById(R.id.version);
+        TextView version = (TextView) findViewById(com.quectel.multicamera.R.id.version);
         version.setText("V " + APKVersionCodeUtils.getVerName(mContext));
 
         switch_mir = (Switch) findViewById(R.id.video_mir_switch);
@@ -1162,7 +1162,7 @@ public class SettingsDialog extends AlertDialog {
             pParams.setPreviewNum(Math.min(pParams.getPreviewNum(), 3));
         }
 
-        noAdapter = new ArrayAdapter<Integer>(mContext, android.R.layout.simple_spinner_dropdown_item, noList);
+        noAdapter = new ArrayAdapter<Integer>(mContext, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, noList);
 
         preNumSpinner.setAdapter(noAdapter);
 

@@ -382,24 +382,24 @@ public class MainActivity extends AppCompatActivity implements IQCarCamInStatusC
             Log.d("qwe", "run: " + ret);
             if (ret == 1) {//ADAS
                 ADAS_ENABLE = true;
-            } else if (ret == 2) {//BSD
+            } else if (ret == 2) {//BSD 010
                 BSD_ENABLE = true;
-            } else if (ret == 3) {//ADAS+BSD
+            } else if (ret == 3) {//ADAS+BSD 011
                 ADAS_ENABLE = true;
                 BSD_ENABLE = true;
-            } else if (ret == 4) {//DMS
+            } else if (ret == 4) {//DMS 100
                 DMS_ENABLE = true;
-            } else if (ret == 5) {//ADAS+DMS
+            } else if (ret == 5) {//ADAS+DMS 101
                 ADAS_ENABLE = true;
                 DMS_ENABLE = true;
-            } else if (ret == 6) {//BSD+DMS
+            } else if (ret == 6) {//BSD+DMS 110
                 BSD_ENABLE = true;
                 DMS_ENABLE = true;
-            } else if (ret == 7) {//ADAS+BSD+DMS
+            } else if (ret == 7) {//ADAS+BSD+DMS 111
                 ADAS_ENABLE = true;
                 BSD_ENABLE = true;
                 DMS_ENABLE = true;
-            } else {// NULL
+            } else {// NULL 000
                 ADAS_ENABLE = false;
                 BSD_ENABLE = false;
                 DMS_ENABLE = false;
